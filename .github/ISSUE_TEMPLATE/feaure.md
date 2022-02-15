@@ -1,7 +1,7 @@
 ---
 name: feaure
 about: 기능 개발
-title: FEAT
+title: "[FEAT]"
 labels: "✨feat"
 assignees: ''
 
