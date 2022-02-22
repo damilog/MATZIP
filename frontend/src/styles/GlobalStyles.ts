@@ -11,7 +11,6 @@ const GlobalStyles = createGlobalStyle`
     align-items: center;
     justify-content: center; 
     background-color: #ffffff;
-    font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif; 
   }
 
   a {

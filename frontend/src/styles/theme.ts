@@ -3,10 +3,7 @@ import baseStyled, { ThemedStyledInterface } from 'styled-components';
 const colors = {
   white: '#ffffff',
   black: '#000000',
-  mainBlue: '#4c73c4',
-  lightBlue: '##8ebbf2',
-  red: '#ff0000',
-  mainOrange: '#e9875f',
+  mainRed: '#f43142',
 };
 
 const secondaryColors = {};
