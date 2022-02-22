@@ -1,7 +1,49 @@
+import styled from 'styles/themedComponents';
+import Header from 'components/common/Header';
+import Navigator from 'components/Filter';
+import RestaurantCard from 'components/RestaurantCard';
+import Footer from 'components/common/Footer';
 const Home = () => {
   return (
-    <div>Home</div>
-  )
-}
+    <>
+      <HeaderLayout>
+        <Header />
+        <Navigator />
+      </HeaderLayout>
+      <MainLayout>
+        <Grid>
+          <RestaurantCard />
+          <RestaurantCard />
+          <RestaurantCard />
+          <RestaurantCard />
+          <RestaurantCard />
+          <RestaurantCard />
+          <RestaurantCard />
+          <RestaurantCard />
+        </Grid>
+      </MainLayout>
+      <Footer />
+    </>
+  );
+};
 
-export default Home
+const HeaderLayout = styled.div`
+  position: sticky;
+  padding-top: 32px;
+  top: -32px;
+  z-index: 9;
+  background-color: ${({ theme }) => theme.colors.lightRed};
+`;
+const MainLayout = styled.main`
+  display: flex;
+  justify-content: center;
+  background-color: ${({ theme }) => theme.colors.lightGray};
+`;
+
+const Grid = styled.div`
+  display: grid;
+  grid-template-rows: repeat(3, 300px);
+  grid-template-columns: repeat(3, 1fr);
+`;
+
+export default Home;
