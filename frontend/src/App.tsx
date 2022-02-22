@@ -1,11 +1,11 @@
 import { Suspense } from 'react';
-import { RecoilRoot } from "recoil";
+import { RecoilRoot } from 'recoil';
 import { Route, Routes } from 'react-router-dom';
 import routes from 'router/routes';
 import RedirectToErrorPage from 'pages/RedirectToErrorPage';
-import Spinner from "components/common/Spinner";
+import Spinner from 'components/common/Spinner';
 
-const App = () =>{
+const App = () => {
   return (
     <RecoilRoot>
       <Suspense fallback={<Spinner />}>
@@ -19,6 +19,6 @@ const App = () =>{
       </Suspense>
     </RecoilRoot>
   );
-}
+};
 
 export default App;
