@@ -1,4 +1,8 @@
 spring:
+  config:
+    activate:
+      on-profile: dev
+
   h2:
     console:
       enabled: true
@@ -14,3 +18,5 @@ spring:
 logging:
   level:
     org.hibernate.SQL: debug
+
+
