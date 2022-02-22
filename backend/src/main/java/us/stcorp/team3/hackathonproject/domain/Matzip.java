@@ -4,9 +4,12 @@ import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -55,6 +58,10 @@ public class Matzip {
     @Setter
     @Column(nullable = false)
     private String modifiedBy;
+
+    @ManyToOne(targetEntity = Category.class, fetch = FetchType.LAZY)
+    @JoinColumn(name = "id")
+    private Category category;
 
     public Matzip(String title, String content, Integer view, Integer like,
         String distance, String price, String createdBy,
