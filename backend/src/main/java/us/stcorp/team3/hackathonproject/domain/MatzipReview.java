@@ -3,6 +3,7 @@ package us.stcorp.team3.hackathonproject.domain;
 import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -48,9 +49,23 @@ public class MatzipReview {
     @NotNull
     private String modifiedBy;
 
-    @ManyToOne
+    @ManyToOne(targetEntity = Matzip.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "MATZIP_ID")
     private Matzip matzip;
 
 
+    private MatzipReview(String comment, String username, String password, String createdBy,
+        String modifiedBy, Matzip matzip) {
+        this.comment = comment;
+        this.username = username;
+        this.password = password;
+        this.createdBy = createdBy;
+        this.modifiedBy = modifiedBy;
+        this.matzip = matzip;
+    }
+
+    public MatzipReview of(String comment, String username, String password, String createdBy,
+        String modifiedBy, Matzip matzip) {
+        return new MatzipReview(comment, username, password, createdBy, modifiedBy, matzip);
+    }
 }

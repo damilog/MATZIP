@@ -41,4 +41,13 @@ public class Category {
     @NotNull
     private String modifiedBy;
 
+    private Category(String name, String createdBy, String modifiedBy) {
+        this.name = name;
+        this.createdBy = createdBy;
+        this.modifiedBy = modifiedBy;
+    }
+
+    public Category of(String name, String createdBy, String modifiedBy) {
+        return new Category(name, createdBy, modifiedBy);
+    }
 }
