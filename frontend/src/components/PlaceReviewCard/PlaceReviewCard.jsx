@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import styled from 'styles/themedComponents';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -48,7 +47,7 @@ const PlaceReviewCard = () => {
             </MoreIconLayer>
           }
           title="루피팬"
-          subheader="조회 3,224  추천 100"
+          subheader="조회 3,224 | 리뷰 33 | 평점 3.5"
         />
         <CardMedia
           className={classes.media}
