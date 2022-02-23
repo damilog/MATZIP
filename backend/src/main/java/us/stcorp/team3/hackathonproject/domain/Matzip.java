@@ -13,10 +13,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import lombok.ToString;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -33,33 +33,28 @@ public class Matzip {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Setter
-    @Column(nullable = false)
+    @NotNull
     private String title;
-    @Setter
-    @Column(nullable = false)
+    @NotNull
     private String content;
-    @Setter
-    @Column(nullable = false)
+    @NotNull
     private Integer viewCount;
-    @Setter
-    @Column(nullable = false)
+    @NotNull
     private Integer likeCount;
-    @Setter
     private String distance;
-    @Setter
     private String price;
 
-    @Column(nullable = false, insertable = false, updatable = false, columnDefinition = "datetime DEFAULT CURRENT_TIMESTAMP")
+    @NotNull
+    @Column(insertable = false, updatable = false, columnDefinition = "datetime DEFAULT CURRENT_TIMESTAMP")
     @CreatedDate
     private LocalDateTime createdAt;
-    @Setter
+    @NotNull
     private String createdBy;
-    @Column(nullable = false, insertable = false, updatable = false, columnDefinition = "datetime DEFAULT CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP")
+    @NotNull
+    @Column(insertable = false, updatable = false, columnDefinition = "datetime DEFAULT CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP")
     @LastModifiedDate
     private LocalDateTime modifiedAt;
-    @Setter
-    @Column(nullable = false)
+    @NotNull
     private String modifiedBy;
 
     @ManyToOne(targetEntity = Category.class, fetch = FetchType.LAZY)

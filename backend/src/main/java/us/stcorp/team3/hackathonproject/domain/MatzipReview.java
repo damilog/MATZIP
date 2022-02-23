@@ -8,10 +8,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import lombok.ToString;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -24,32 +24,28 @@ public class MatzipReview {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private Long id;
 
-    @Setter
-    @Column(nullable = false)
+    @NotNull
     private String comment;
 
-    @Setter
-    @Column(nullable = false)
+    @NotNull
     private String username;
 
-    @Setter
-    @Column(nullable = false)
+    @NotNull
     private String password;
 
-    @Column(nullable = false, insertable = false, updatable = false, columnDefinition = "datetime DEFAULT CURRENT_TIMESTAMP")
+    @NotNull
+    @Column(insertable = false, updatable = false, columnDefinition = "datetime DEFAULT CURRENT_TIMESTAMP")
     @CreatedDate
     private LocalDateTime createdAt;
-    @Column(nullable = false)
-    @Setter
+    @NotNull
     private String createdBy;
-    @Column(nullable = false, insertable = false, updatable = false, columnDefinition = "datetime DEFAULT CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP")
+    @NotNull
+    @Column(insertable = false, updatable = false, columnDefinition = "datetime DEFAULT CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP")
     @LastModifiedDate
     private LocalDateTime modifiedAt;
-    @Setter
-    @Column(nullable = false)
+    @NotNull
     private String modifiedBy;
 
     @ManyToOne
