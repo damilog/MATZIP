@@ -66,7 +66,7 @@ public class Matzip {
     private Category category;
 
     @OneToMany
-    @JoinColumn(name = "MATZIPREVIEW_ID")
+    @JoinColumn(name = "MATZIP_ID")
     private Set<MatzipReview> matzipReviews = new HashSet<>();
 
     public Matzip(String title, String content, Integer view, Integer like,

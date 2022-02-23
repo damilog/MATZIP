@@ -52,7 +52,7 @@ public class MatzipReview {
     private String modifiedBy;
 
     @ManyToOne
-    @JoinColumn(name = "MATZIPREVIEW_ID")
+    @JoinColumn(name = "MATZIP_ID")
     private Matzip matzip;
 
 
