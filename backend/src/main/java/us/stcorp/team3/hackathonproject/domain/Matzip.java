@@ -40,10 +40,10 @@ public class Matzip {
     private String content;
     @Setter
     @Column(nullable = false)
-    private Integer view;
+    private Integer viewCount;
     @Setter
     @Column(nullable = false)
-    private Integer like;
+    private Integer likeCount;
     @Setter
     private String distance;
     @Setter
@@ -53,9 +53,8 @@ public class Matzip {
     @CreatedDate
     private LocalDateTime createdAt;
     @Setter
-    @Column(nullable = false, insertable = false, updatable = false, columnDefinition = "datetime DEFAULT CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP")
     private String createdBy;
-    @Column(nullable = false)
+    @Column(nullable = false, insertable = false, updatable = false, columnDefinition = "datetime DEFAULT CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP")
     @LastModifiedDate
     private LocalDateTime modifiedAt;
     @Setter
@@ -75,8 +74,8 @@ public class Matzip {
         String modifiedBy) {
         this.title = title;
         this.content = content;
-        this.view = view;
-        this.like = like;
+        this.viewCount = view;
+        this.likeCount = like;
         this.distance = distance;
         this.price = price;
         this.createdBy = createdBy;
