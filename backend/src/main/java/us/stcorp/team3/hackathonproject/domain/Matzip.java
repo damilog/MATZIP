@@ -54,7 +54,7 @@ public class Matzip {
     @NotNull
     private String modifiedBy;
 
-    @ManyToOne(targetEntity = Category.class, fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "CATEGORY_ID")
     private Category category;
 

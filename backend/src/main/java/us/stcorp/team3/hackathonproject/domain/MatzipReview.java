@@ -49,7 +49,7 @@ public class MatzipReview {
     @NotNull
     private String modifiedBy;
 
-    @ManyToOne(targetEntity = Matzip.class, fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "MATZIP_ID")
     private Matzip matzip;
 
