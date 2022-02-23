@@ -1,8 +1,6 @@
 package us.stcorp.team3.hackathonproject.domain;
 
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -12,7 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -61,10 +58,6 @@ public class Matzip {
     @JoinColumn(name = "CATEGORY_ID")
     private Category category;
 
-    @OneToMany
-    @JoinColumn(name = "MATZIP_ID")
-    private Set<MatzipReview> matzipReviews = new HashSet<>();
-
     public Matzip(String title, String content, Integer view, Integer like,
         String distance, String price, String createdBy,
         String modifiedBy) {
@@ -77,7 +70,6 @@ public class Matzip {
         this.createdBy = createdBy;
         this.modifiedBy = modifiedBy;
     }
-
 
     public static Matzip of(String title, String content, Integer view, Integer like,
         String distance, String price, String createdBy, String modifiedBy) {
