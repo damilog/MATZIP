@@ -32,9 +32,9 @@ public class Category {
     @CreatedDate
     private LocalDateTime createdAt;
     @Setter
-    @Column(nullable = false, insertable = false, updatable = false, columnDefinition = "datetime DEFAULT CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP")
-    private String createdBy;
     @Column(nullable = false)
+    private String createdBy;
+    @Column(nullable = false, insertable = false, updatable = false, columnDefinition = "datetime DEFAULT CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP")
     @LastModifiedDate
     private LocalDateTime modifiedAt;
     @Setter
