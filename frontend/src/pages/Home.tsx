@@ -1,8 +1,9 @@
 import styled from 'styles/themedComponents';
 import Header from 'components/common/Header';
 import Navigator from 'components/Filter';
-import RestaurantCard from 'components/RestaurantCard';
+import PlaceCard from 'components/PlaceCard';
 import Footer from 'components/common/Footer';
+
 const Home = () => {
   return (
     <>
@@ -12,14 +13,14 @@ const Home = () => {
       </HeaderLayout>
       <MainLayout>
         <Grid>
-          <RestaurantCard />
-          <RestaurantCard />
-          <RestaurantCard />
-          <RestaurantCard />
-          <RestaurantCard />
-          <RestaurantCard />
-          <RestaurantCard />
-          <RestaurantCard />
+          <PlaceCard />
+          <PlaceCard />
+          <PlaceCard />
+          <PlaceCard />
+          <PlaceCard />
+          <PlaceCard />
+          <PlaceCard />
+          <PlaceCard />
         </Grid>
       </MainLayout>
       <Footer />
