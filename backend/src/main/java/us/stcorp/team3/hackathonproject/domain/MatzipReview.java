@@ -1,7 +1,5 @@
 package us.stcorp.team3.hackathonproject.domain;
 
-import java.time.LocalDateTime;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -14,14 +12,13 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
+import us.stcorp.team3.hackathonproject.common.BaseTimeEntity;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @ToString
 @Entity
-public class MatzipReview {
+public class MatzipReview extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,21 +32,12 @@ public class MatzipReview {
 
     @NotNull
     private String password;
-
-    @NotNull
-    @Column(insertable = false, updatable = false, columnDefinition = "datetime DEFAULT CURRENT_TIMESTAMP")
-    @CreatedDate
-    private LocalDateTime createdAt;
     @NotNull
     private String createdBy;
     @NotNull
-    @Column(insertable = false, updatable = false, columnDefinition = "datetime DEFAULT CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP")
-    @LastModifiedDate
-    private LocalDateTime modifiedAt;
-    @NotNull
     private String modifiedBy;
 
-    @ManyToOne(targetEntity = Matzip.class, fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "MATZIP_ID")
     private Matzip matzip;
 

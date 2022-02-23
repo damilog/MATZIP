@@ -1,6 +1,5 @@
 package us.stcorp.team3.hackathonproject.domain;
 
-import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,14 +10,13 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
+import us.stcorp.team3.hackathonproject.common.BaseTimeEntity;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @ToString
 @Entity
-public class Category {
+public class Category extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,17 +25,8 @@ public class Category {
 
     @NotNull
     private String name;
-
-    @NotNull
-    @Column(insertable = false, updatable = false, columnDefinition = "datetime DEFAULT CURRENT_TIMESTAMP")
-    @CreatedDate
-    private LocalDateTime createdAt;
     @NotNull
     private String createdBy;
-    @NotNull
-    @Column(insertable = false, updatable = false, columnDefinition = "datetime DEFAULT CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP")
-    @LastModifiedDate
-    private LocalDateTime modifiedAt;
     @NotNull
     private String modifiedBy;
 
