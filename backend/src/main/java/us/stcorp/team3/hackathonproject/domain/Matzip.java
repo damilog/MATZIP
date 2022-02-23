@@ -58,7 +58,7 @@ public class Matzip {
     @JoinColumn(name = "CATEGORY_ID")
     private Category category;
 
-    public Matzip(String title, String content, Integer view, Integer like,
+    private Matzip(String title, String content, Integer view, Integer like,
         String distance, String price, String createdBy,
         String modifiedBy) {
         this.title = title;
