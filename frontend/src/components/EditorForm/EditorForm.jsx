@@ -1,7 +1,6 @@
 import styled from 'styles/themedComponents';
 import TextInput from 'components/common/TextInput';
 import SelectBox from 'components/common/SelectBox';
-import StarRating from 'components/common/StarRating';
 import GradientButton from 'components/common/GradientButton';
 
 const categories = [
@@ -21,7 +20,7 @@ const Input = ({ title, width }) => {
 
 const EditorForm = () => {
   return (
-    <Layout>
+    <ul>
       <TextInputLayer>
         <SelectBox selectArray={categories} width={'200px'} />
       </TextInputLayer>
@@ -29,25 +28,17 @@ const EditorForm = () => {
       <Input title={'주소'} width={'300px'} />
       <Input title={'추천 메뉴'} width={'300px'} />
       <Input title={'가격대'} type={'number'} width={'300px'} />
-
-      <HelpComment>식당 추천을 위해 필요해요!😋</HelpComment>
-
+      <HelpComment>식당 추천을 위해 필요해요! 😋</HelpComment>
       <Input title={'네이버 지도 URL'} type={'text'} width={'300px'} />
       <Input title={'네이버 리뷰수'} type={'number'} width={'300px'} />
       <Input title={'네이버 평점'} type={'number'} width={'300px'} />
-
-      <TextInputLayer>
-        <span>내 평점</span>
-        <StarRating rating={0} controlled={true} />
-      </TextInputLayer>
       <TextInputLayer>
         <GradientButton width={'300px'}>등록하기</GradientButton>
       </TextInputLayer>
-    </Layout>
+    </ul>
   );
 };
 
-const Layout = styled.ul``;
 const TextInputLayer = styled.li`
   display: flex;
   justify-content: center;
@@ -60,6 +51,7 @@ const TextInputLayer = styled.li`
     padding-bottom: 25px;
   }
 `;
+
 const HelpComment = styled.div`
   display: flex;
   justify-content: center;
