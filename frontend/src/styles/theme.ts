@@ -2,11 +2,16 @@ import baseStyled, { ThemedStyledInterface } from 'styled-components';
 
 const colors = {
   white: '#ffffff',
-  lightGray: '#f9f9f9',
-  gray: '#f5f5f5',
+  gray: {
+    x_light: '#f5f5f5',
+    light: '#cecece',
+  },
+  red: {
+    x_light: '#feebdb',
+    light: '#fc8f8f',
+    main: '#f43142',
+  },
   black: '#000000',
-  mainRed: '#f43142',
-  lightRed: '#feebdb',
 };
 
 const secondaryColors = {};

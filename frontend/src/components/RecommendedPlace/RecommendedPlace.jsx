@@ -18,7 +18,7 @@ const RecommendedPlace = () => {
 };
 
 const Layout = styled.div`
-  background-color: ${({ theme }) => theme.colors.lightGray};
+  background-color: ${({ theme }) => theme.colors.gray.x_light};
 `;
 
 const Title = styled.div`
