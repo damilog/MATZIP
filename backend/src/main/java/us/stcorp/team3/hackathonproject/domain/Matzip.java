@@ -38,7 +38,7 @@ public class Matzip extends BaseTimeEntity {
     @NotNull
     private String thumbnail;
     @NotNull
-    private float naverRating;
+    private Float naverRating;
     @NotNull
     private Long naverComment;
     private String naverUrl;
