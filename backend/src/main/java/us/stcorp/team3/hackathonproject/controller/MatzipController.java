@@ -46,7 +46,7 @@ public class MatzipController {
     }
 
     @GetMapping("/{matzipId}")
-    private ResponseEntity<MatzipResponse> findMatzip(@PathVariable long matzipId) {
+    public ResponseEntity<MatzipResponse> findMatzip(@PathVariable long matzipId) {
         return ResponseEntity.ok(matzipService.findMatzip(matzipId));
     }
 
