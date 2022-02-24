@@ -3,6 +3,7 @@ package us.stcorp.team3.hackathonproject.service;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
+import javax.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -25,6 +26,7 @@ public class MatzipService {
 
     private final MatzipRepository matzipRepository;
     private final ReviewRepository reviewRepository;
+    private final EntityManager entityManager;
 
     @Transactional(readOnly = true)
     public List<EntireMatzipResponse> findAllMatzip(final Pageable pageable) {
@@ -42,7 +44,8 @@ public class MatzipService {
     @Transactional(readOnly = true)
     public MatzipResponse findMatzip(final long matzipId) {
         final Optional<Matzip> matzipOptional = matzipRepository.findById(matzipId);
-        final List<MatzipReviewResponse> matzipReviewRespons = reviewRepository.findAllByMatzipId(matzipId).stream()
+        final List<MatzipReviewResponse> matzipReviewRespons = reviewRepository.findAllByMatzipId(
+                matzipId).stream()
             .map(MatzipReviewResponse::matToReviewResponse)
             .toList();
         if (matzipOptional.isPresent()) {
