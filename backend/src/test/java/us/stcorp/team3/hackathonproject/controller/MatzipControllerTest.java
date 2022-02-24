@@ -20,15 +20,15 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import us.stcorp.team3.hackathonproject.domain.Matzip;
-import us.stcorp.team3.hackathonproject.dto.MatzipResponse;
+import us.stcorp.team3.hackathonproject.dto.EntireMatzipResponse;
 import us.stcorp.team3.hackathonproject.service.MatzipService;
 
 @WebMvcTest(MatzipController.class)
 class MatzipControllerTest {
 
     private final MockMvc mvc;
-    List<MatzipResponse> matzipResponses;
-    List<MatzipResponse> expectedResult;
+    List<EntireMatzipResponse> entireMatzipRespons;
+    List<EntireMatzipResponse> expectedResult;
     PageRequest pageRequest;
 
     @MockBean
@@ -83,8 +83,8 @@ class MatzipControllerTest {
                 "www.11st.co.kr", 3.5f, 12L, "www.11st.co.kr",
                 "서울스퀘어", "2만원대", "민철", "민철"));
 
-        matzipResponses = matzips.stream()
-            .map(matzip -> MatzipResponse.matToRecord(matzip))
+        entireMatzipRespons = matzips.stream()
+            .map(matzip -> EntireMatzipResponse.matToRecord(matzip))
             .collect(Collectors.toList());
 
         List<Matzip> expected = List.of(
@@ -126,7 +126,7 @@ class MatzipControllerTest {
                 "서울스퀘어", "2만원대", "민철", "민철"));
 
         expectedResult = expected.stream()
-            .map(matzip -> MatzipResponse.matToRecord(matzip))
+            .map(matzip -> EntireMatzipResponse.matToRecord(matzip))
             .collect(Collectors.toList());
 
 

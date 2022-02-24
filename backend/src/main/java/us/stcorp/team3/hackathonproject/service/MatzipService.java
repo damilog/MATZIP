@@ -9,7 +9,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import us.stcorp.team3.hackathonproject.dto.MatzipResponse;
+import us.stcorp.team3.hackathonproject.dto.EntireMatzipResponse;
 import us.stcorp.team3.hackathonproject.repository.MatzipRepository;
 
 @Service
@@ -19,10 +19,10 @@ public class MatzipService {
     private final MatzipRepository matzipRepository;
 
     @Transactional(readOnly = true)
-    public List<MatzipResponse> findAllMatzip(final Pageable pageable) {
+    public List<EntireMatzipResponse> findAllMatzip(final Pageable pageable) {
         final Pageable pageRequest = addSortToPageable(pageable);
         return matzipRepository.findAll(pageRequest).stream()
-            .map(MatzipResponse::matToRecord)
+            .map(EntireMatzipResponse::matToRecord)
             .collect(Collectors.toList());
     }
 
