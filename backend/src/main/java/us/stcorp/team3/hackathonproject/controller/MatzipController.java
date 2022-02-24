@@ -7,6 +7,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import us.stcorp.team3.hackathonproject.domain.Category;
 import us.stcorp.team3.hackathonproject.dto.EntireMatzipResponse;
 import us.stcorp.team3.hackathonproject.dto.MatzipRequest;
+import us.stcorp.team3.hackathonproject.dto.MatzipResponse;
 import us.stcorp.team3.hackathonproject.service.MatzipService;
 
 @RestController
@@ -24,7 +26,7 @@ public class MatzipController {
     private final MatzipService matzipService;
 
     @GetMapping
-    public ResponseEntity<List<EntireMatzipResponse>> allMatzip(
+    public ResponseEntity<List<EntireMatzipResponse>> findAllMatzip(
         @PageableDefault(size = 12) Pageable pageable) {
         return ResponseEntity.ok(matzipService.findAllMatzip(pageable));
     }
@@ -38,5 +40,10 @@ public class MatzipController {
     @GetMapping("/category")
     public ResponseEntity<List<Category>> getCategories() {
         return ResponseEntity.ok(List.of(Category.values()));
+    }
+
+    @GetMapping("/{matzipId}")
+    private ResponseEntity<MatzipResponse> findMatzip(@PathVariable long matzipId) {
+        return ResponseEntity.ok(matzipService.findMatzip(matzipId));
     }
 }
