@@ -2,6 +2,7 @@ package us.stcorp.team3.hackathonproject.controller;
 
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
@@ -31,7 +32,7 @@ public class MatzipController {
     private final MatzipReviewService matzipReviewService;
 
     @GetMapping
-    public ResponseEntity<List<EntireMatzipResponse>> findAllMatzip(
+    public ResponseEntity<Page<EntireMatzipResponse>> findAllMatzip(
         @PageableDefault(size = 12) Pageable pageable) {
         return ResponseEntity.ok(matzipService.findAllMatzip(pageable));
     }
@@ -66,7 +67,7 @@ public class MatzipController {
     }
 
     @GetMapping("/category/{category}")
-    public ResponseEntity<List<EntireMatzipResponse>> findAllMatzipFilterByCategory(
+    public ResponseEntity<Page<EntireMatzipResponse>> findAllMatzipFilterByCategory(
         @PathVariable Category category, @PageableDefault(size = 12) Pageable pageable) {
         return ResponseEntity.ok(matzipService.findAllMatzipFilterByCategory(category, pageable));
     }

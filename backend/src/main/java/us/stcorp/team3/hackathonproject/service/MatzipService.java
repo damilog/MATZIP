@@ -3,8 +3,8 @@ package us.stcorp.team3.hackathonproject.service;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
-import javax.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -26,14 +26,13 @@ public class MatzipService {
 
     private final MatzipRepository matzipRepository;
     private final ReviewRepository reviewRepository;
-    private final EntityManager entityManager;
 
     @Transactional(readOnly = true)
-    public List<EntireMatzipResponse> findAllMatzip(final Pageable pageable) {
+    public Page<EntireMatzipResponse> findAllMatzip(final Pageable pageable) {
         final Pageable pageRequest = addSortToPageable(pageable);
-        return matzipRepository.findAll(pageRequest).stream()
-            .map(EntireMatzipResponse::mapToEntireMatzipResponse)
-            .toList();
+
+        return matzipRepository.findEntireMatzipWithPaging(
+            null, pageRequest);
     }
 
     @Transactional
@@ -56,12 +55,11 @@ public class MatzipService {
     }
 
     @Transactional(readOnly = true)
-    public List<EntireMatzipResponse> findAllMatzipFilterByCategory(final Category category,
+    public Page<EntireMatzipResponse> findAllMatzipFilterByCategory(final Category category,
         final Pageable pageable) {
         final PageRequest pageRequest = addSortToPageable(pageable);
-        return matzipRepository.findAllByCategory(category, pageRequest).stream()
-            .map(EntireMatzipResponse::mapToEntireMatzipResponse)
-            .toList();
+
+        return matzipRepository.findEntireMatzipWithPaging(category, pageRequest);
     }
 
     @Transactional

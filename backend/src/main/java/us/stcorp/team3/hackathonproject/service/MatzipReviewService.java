@@ -4,7 +4,6 @@ import static us.stcorp.team3.hackathonproject.domain.QMatzip.matzip;
 import static us.stcorp.team3.hackathonproject.domain.QMatzipReview.matzipReview;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import javax.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,7 +19,7 @@ public class MatzipReviewService {
 
     private final ReviewRepository reviewRepository;
     private final MatzipRepository matzipRepository;
-    private final EntityManager entityManager;
+    private final JPAQueryFactory queryFactory;
 
     @Transactional
     public void saveMatzipReview(Long matzipId, MatzipReviewRequest matzipReviewRequest) {
@@ -29,7 +28,6 @@ public class MatzipReviewService {
         reviewRepository.save(MatzipReviewRequest.mapToMatzipReview(matzip, matzipReviewRequest));
 
         QMatzip qMatzip = QMatzip.matzip;
-        JPAQueryFactory queryFactory = new JPAQueryFactory(entityManager);
         Double ratingAverage = queryFactory.select(matzipReview.rating.avg())
             .from(matzipReview).fetchOne();
         queryFactory.update(qMatzip)
@@ -41,7 +39,6 @@ public class MatzipReviewService {
     @Transactional
     public void deleteMatzipReview(Long matzipReviewId, Long matzipId) {
         reviewRepository.deleteById(matzipReviewId);
-        JPAQueryFactory queryFactory = new JPAQueryFactory(entityManager);
         Double ratingAverage = queryFactory.select(matzipReview.rating.avg())
             .from(matzipReview).fetchOne();
 
