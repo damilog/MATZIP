@@ -87,4 +87,8 @@ public class Matzip extends BaseTimeEntity {
         this.address = matzipRequest.address();
         this.category = matzipRequest.category();
     }
+
+    public void increaseViewCount() {
+        this.viewCount++;
+    }
 }
