@@ -4,10 +4,12 @@
 
 ## Information
 
-- Port Number `8080`
+- Port Number `8000`
 - Endpoint
   - `[POST] /recommend/{item_id}`
     - `item_id: int`
+- OpenAPI
+  - `HOST:PORT/redoc`
 
 ### Usage
 
