@@ -3,11 +3,13 @@ package us.stcorp.team3.hackathonproject.controller;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.then;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.junit.jupiter.api.BeforeEach;
@@ -22,21 +24,26 @@ import org.springframework.test.web.servlet.MockMvc;
 import us.stcorp.team3.hackathonproject.domain.Category;
 import us.stcorp.team3.hackathonproject.domain.Matzip;
 import us.stcorp.team3.hackathonproject.dto.EntireMatzipResponse;
+import us.stcorp.team3.hackathonproject.dto.MatzipRequest;
 import us.stcorp.team3.hackathonproject.service.MatzipService;
 
 @WebMvcTest(MatzipController.class)
 class MatzipControllerTest {
 
     private final MockMvc mvc;
+    private final ObjectMapper objectMapper;
     List<EntireMatzipResponse> entireMatzipRespons;
     List<EntireMatzipResponse> expectedResult;
     PageRequest pageRequest;
+    MatzipRequest matzipRequest;
 
     @MockBean
     private MatzipService matzipService;
 
-    public MatzipControllerTest(@Autowired MockMvc mvc) {
+    public MatzipControllerTest(@Autowired MockMvc mvc,
+        @Autowired ObjectMapper objectMapper) {
         this.mvc = mvc;
+        this.objectMapper = objectMapper;
     }
 
     @BeforeEach
@@ -130,6 +137,9 @@ class MatzipControllerTest {
             .map(matzip -> EntireMatzipResponse.matToRecord(matzip))
             .collect(Collectors.toList());
 
+        matzipRequest = new MatzipRequest("민철이네 분식", "떡볶이 존맛!!", "www.11st.co.kr", 5.0f, 123l,
+            "www.11st.co.kr", "서울 어딘가", "2만원대", Category.분식, "민철");
+
 
     }
 
@@ -153,6 +163,23 @@ class MatzipControllerTest {
 
         // then
         then(matzipService).should().findAllMatzip(pageRequest);
+    }
+
+    @DisplayName("[POST] /matzip - 새로운 맛집을 등록")
+    @Test
+    void registerNewMatzip() throws Exception {
+        String request = objectMapper.writeValueAsString(matzipRequest);
+        // when
+        mvc.perform(
+                post("/api/matzip")
+                    .content(request)
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .accept(MediaType.APPLICATION_JSON))
+            .andExpect(status().isCreated())
+            .andExpect(content().string("Your Request is Succeed"))
+            .andDo(print());
+        // then
+        then(matzipService).should().saveMatzip(matzipRequest);
     }
 
     @DisplayName("[GET] /category - 전체 카테고리 항목 조회")
