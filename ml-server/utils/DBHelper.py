@@ -9,7 +9,7 @@ class DBHelper:
 
     def getItem(self, id: int):
         query = """
-            SELECT category, naver_rating, naver_comments, price
+            SELECT category, naver_rating, naver_comment, price
             FROM matzip
             WHERE id = %s
         """
