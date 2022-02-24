@@ -55,7 +55,7 @@ public class MatzipController {
     @DeleteMapping("/{matzipId}")
     public ResponseEntity<String> deleteMatzip(@PathVariable long matzipId) {
         matzipService.deleteMatzip(matzipId);
-        return new ResponseEntity<>("Your Request has Succeed", HttpStatus.OK);
+        return ResponseEntity.ok("Your Request has Succeed");
     }
 
     @GetMapping("/category/{category}")
