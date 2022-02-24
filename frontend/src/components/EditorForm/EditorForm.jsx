@@ -24,6 +24,7 @@ const EditorForm = () => {
       <TextInputLayer>
         <SelectBox selectArray={categories} width={'200px'} />
       </TextInputLayer>
+      <Input title={'작성자'} width={'300px'} />
       <Input title={'상호명'} width={'300px'} />
       <Input title={'주소'} width={'300px'} />
       <Input title={'추천 메뉴'} width={'300px'} />
