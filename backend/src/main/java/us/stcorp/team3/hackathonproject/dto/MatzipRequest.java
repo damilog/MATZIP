@@ -7,7 +7,7 @@ public record MatzipRequest(String title, String content, String thumbnail, Floa
                             Long naverComment, String naverUrl, String address, String price, Category category, String username) {
 
     public static Matzip mapToEntity(final MatzipRequest matzipRequest) {
-        return Matzip.of(matzipRequest.title(), matzipRequest.content(), 0, 0f, matzipRequest.thumbnail(),
+        return Matzip.of(matzipRequest.title(), matzipRequest.content(), matzipRequest.thumbnail(),
             matzipRequest.naverRating(), matzipRequest.naverComment(), matzipRequest.naverUrl(),
             matzipRequest.address(), matzipRequest.price(), matzipRequest.category(), matzipRequest.username(), matzipRequest.username());
     }

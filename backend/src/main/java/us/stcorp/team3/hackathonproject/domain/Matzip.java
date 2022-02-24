@@ -50,14 +50,14 @@ public class Matzip extends BaseTimeEntity {
     @NotNull
     private String modifiedBy;
 
-    private Matzip(String title, String content, Integer viewCount, Float rating,
-        String thumbnail, Float naverRating, Long naverComment, String naverUrl,
+    private Matzip(String title, String content, String thumbnail, Float naverRating,
+        Long naverComment, String naverUrl,
         String address, String price, Category category, String createdBy,
         String modifiedBy) {
         this.title = title;
         this.content = content;
-        this.viewCount = viewCount;
-        this.rating = rating;
+        this.viewCount = 0;
+        this.rating = 0f;
         this.thumbnail = thumbnail;
         this.naverRating = naverRating;
         this.naverComment = naverComment;
@@ -69,10 +69,10 @@ public class Matzip extends BaseTimeEntity {
         this.modifiedBy = modifiedBy;
     }
 
-    public static Matzip of(String title, String content, Integer viewCount, Float rating,
-        String thumbnail, Float naverRating, Long naverComment, String naverUrl,
+    public static Matzip of(String title, String content, String thumbnail, Float naverRating,
+        Long naverComment, String naverUrl,
         String address, String price, Category category, String createdBy, String modifiedBy) {
-        return new Matzip(title, content, viewCount, rating, thumbnail, naverRating, naverComment,
+        return new Matzip(title, content, thumbnail, naverRating, naverComment,
             naverUrl, address, price, category, createdBy, modifiedBy);
     }
 }
