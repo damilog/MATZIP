@@ -22,7 +22,7 @@ public class MatzipService {
     public List<EntireMatzipResponse> findAllMatzip(final Pageable pageable) {
         final Pageable pageRequest = addSortToPageable(pageable);
         return matzipRepository.findAll(pageRequest).stream()
-            .map(EntireMatzipResponse::matToRecord)
+            .map(EntireMatzipResponse::mapToRecord)
             .toList();
     }
 
