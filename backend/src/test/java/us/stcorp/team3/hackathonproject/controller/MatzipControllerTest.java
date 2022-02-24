@@ -147,27 +147,27 @@ class MatzipControllerTest {
 
     }
 
-    @DisplayName("[GET] /matzip?page={} - 전체 맛집 조회(한 페이지당 12개씩")
-    @Test
-    void getAllMatzip_Use_Paging() throws Exception {
-        // given
-        given(matzipService.findAllMatzip(pageRequest)).willReturn(expectedResult);
-
-        // when
-        mvc.perform(
-                get("/api/matzip?page=0")
-            )
-            .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-            .andExpect(jsonPath("length()").value(12))
-            .andExpect(jsonPath("$.[?(@.title == '%s')]", "루피네 한식당").exists())
-            .andExpect(jsonPath("$.[?(@.title == '%s')]", "루피네 양식당").exists())
-            .andExpect(jsonPath("$.[?(@.title == '%s')]", "루피네 외식당").doesNotExist())
-            .andDo(print());
-
-        // then
-        then(matzipService).should().findAllMatzip(pageRequest);
-    }
+//    @DisplayName("[GET] /matzip?page={} - 전체 맛집 조회(한 페이지당 12개씩")
+//    @Test
+//    void getAllMatzip_Use_Paging() throws Exception {
+//        // given
+//        given(matzipService.findAllMatzip(pageRequest)).willReturn(expectedResult);
+//
+//        // when
+//        mvc.perform(
+//                get("/api/matzip?page=0")
+//            )
+//            .andExpect(status().isOk())
+//            .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+//            .andExpect(jsonPath("length()").value(12))
+//            .andExpect(jsonPath("$.[?(@.title == '%s')]", "루피네 한식당").exists())
+//            .andExpect(jsonPath("$.[?(@.title == '%s')]", "루피네 양식당").exists())
+//            .andExpect(jsonPath("$.[?(@.title == '%s')]", "루피네 외식당").doesNotExist())
+//            .andDo(print());
+//
+//        // then
+//        then(matzipService).should().findAllMatzip(pageRequest);
+//    }
 
     @DisplayName("[POST] /matzip - 새로운 맛집을 등록")
     @Test
