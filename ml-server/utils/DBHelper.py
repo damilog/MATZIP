@@ -9,9 +9,9 @@ class DBHelper:
 
     def getItem(self, id: int):
         query = """
-            SELECT c.name, m.naver_rating, m.naver_comments, m.price
-            FROM matzip m JOIN category c ON m.category_id = c.id
-            WHERE m.id = %s
+            SELECT category, naver_rating, naver_comments, price
+            FROM matzip
+            WHERE id = %s
         """
         self.__execute(query, id)
         return self.__fetchone()
