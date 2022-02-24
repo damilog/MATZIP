@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -50,6 +51,13 @@ public class MatzipController {
     @GetMapping("/{matzipId}")
     public ResponseEntity<MatzipResponse> findMatzip(@PathVariable long matzipId) {
         return ResponseEntity.ok(matzipService.findMatzip(matzipId));
+    }
+
+    @PutMapping("/{matzipId}")
+    public ResponseEntity<String> modifyMatzip(@PathVariable long matzipId,
+        @RequestBody MatzipRequest matzipRequest) {
+        matzipService.modifyMatzip(matzipId, matzipRequest);
+        return ResponseEntity.ok("Your Request has Succeed");
     }
 
     @DeleteMapping("/{matzipId}")
