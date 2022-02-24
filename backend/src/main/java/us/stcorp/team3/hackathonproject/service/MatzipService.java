@@ -14,7 +14,7 @@ import us.stcorp.team3.hackathonproject.domain.Matzip;
 import us.stcorp.team3.hackathonproject.dto.EntireMatzipResponse;
 import us.stcorp.team3.hackathonproject.dto.MatzipRequest;
 import us.stcorp.team3.hackathonproject.dto.MatzipResponse;
-import us.stcorp.team3.hackathonproject.dto.ReviewResponse;
+import us.stcorp.team3.hackathonproject.dto.MatzipReviewResponse;
 import us.stcorp.team3.hackathonproject.repository.MatzipRepository;
 import us.stcorp.team3.hackathonproject.repository.ReviewRepository;
 
@@ -41,12 +41,12 @@ public class MatzipService {
     @Transactional(readOnly = true)
     public MatzipResponse findMatzip(final long matzipId) {
         final Optional<Matzip> matzipOptional = matzipRepository.findById(matzipId);
-        final List<ReviewResponse> reviewResponses = reviewRepository.findAllByMatzipId(matzipId).stream()
-            .map(ReviewResponse::matToReviewResponse)
+        final List<MatzipReviewResponse> matzipReviewRespons = reviewRepository.findAllByMatzipId(matzipId).stream()
+            .map(MatzipReviewResponse::matToReviewResponse)
             .toList();
         if (matzipOptional.isPresent()) {
             final Matzip matzip = matzipOptional.get();
-            return MatzipResponse.mapToMatzipResponse(matzip, reviewResponses);
+            return MatzipResponse.mapToMatzipResponse(matzip, matzipReviewRespons);
         }
         throw new IllegalArgumentException("존재하지 않는 맛집입니다.");
     }
