@@ -82,7 +82,7 @@ public class MatzipController {
     @DeleteMapping("/{matzipId}/reviews/{matzipReviewId}")
     public ResponseEntity<String> deleteMatzipReview(@PathVariable Long matzipId,
         @PathVariable Long matzipReviewId) {
-        matzipReviewService.deleteMatzipReview(matzipReviewId);
+        matzipReviewService.deleteMatzipReview(matzipId, matzipReviewId);
         return new ResponseEntity<>("MatzipReview is deleted successfully", HttpStatus.ACCEPTED);
     }
 }
