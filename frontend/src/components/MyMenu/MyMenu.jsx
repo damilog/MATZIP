@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
       color: '#fefefe',
       position: 'absolute',
       top: '4%',
-      right: '5%',
+      right: '10%',
     },
   },
   extendedIcon: {
