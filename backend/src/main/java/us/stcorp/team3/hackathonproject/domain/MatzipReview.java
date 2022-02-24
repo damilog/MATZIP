@@ -48,7 +48,7 @@ public class MatzipReview extends BaseTimeEntity {
         this.rating = rating;
     }
 
-    public MatzipReview of(String comment, String createdBy,
+    public static MatzipReview of(String comment, String createdBy,
         String modifiedBy, Matzip matzip, Integer rating) {
         return new MatzipReview(comment, createdBy, modifiedBy, matzip, rating);
     }
