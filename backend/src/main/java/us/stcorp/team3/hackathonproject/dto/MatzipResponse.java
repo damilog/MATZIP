@@ -8,10 +8,10 @@ public record MatzipResponse(Long id, String title, String content, Integer view
                              String thumbnail, String naverUrl, Double naverRating,
                              Long naverComment, String address, Integer price, Category category,
                              Double rating,
-                             List<ReviewResponse> review) {
+                             List<MatzipReviewResponse> review) {
 
     public static MatzipResponse mapToMatzipResponse(final Matzip matzip,
-        final List<ReviewResponse> reviews) {
+        final List<MatzipReviewResponse> reviews) {
         return new MatzipResponse(matzip.getId(), matzip.getTitle(), matzip.getContent(),
             matzip.getViewCount(), matzip.getThumbnail(), matzip.getNaverUrl(),
             matzip.getNaverRating(), matzip.getNaverComment(), matzip.getAddress(),

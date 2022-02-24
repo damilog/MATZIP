@@ -33,7 +33,7 @@ class MatzipControllerTest {
 
     private final MockMvc mvc;
     private final ObjectMapper objectMapper;
-    private List<EntireMatzipResponse> entireMatzipRespons;
+    private List<EntireMatzipResponse> entireMatzipResponse;
     private List<EntireMatzipResponse> expectedResult;
     private PageRequest pageRequest;
     private MatzipRequest matzipRequest;
@@ -95,7 +95,7 @@ class MatzipControllerTest {
                 "www.11st.co.kr", 3.5d, 12L, "www.11st.co.kr",
                 "서울스퀘어", 20000, Category.양식, "민철", "민철"));
 
-        entireMatzipRespons = matzips.stream()
+        entireMatzipResponse = matzips.stream()
             .map(EntireMatzipResponse::mapToEntireMatzipResponse)
             .collect(Collectors.toList());
 
