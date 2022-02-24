@@ -9,6 +9,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import us.stcorp.team3.hackathonproject.domain.Category;
 import us.stcorp.team3.hackathonproject.domain.Matzip;
 import us.stcorp.team3.hackathonproject.dto.EntireMatzipResponse;
 import us.stcorp.team3.hackathonproject.dto.MatzipRequest;
@@ -48,6 +49,15 @@ public class MatzipService {
             return MatzipResponse.mapToMatzipResponse(matzip, reviewResponses);
         }
         throw new IllegalArgumentException("존재하지 않는 맛집입니다.");
+    }
+
+    @Transactional(readOnly = true)
+    public List<EntireMatzipResponse> findAllMatzipFilterByCategory(final Category category,
+        final Pageable pageable) {
+        final PageRequest pageRequest = addSortToPageable(pageable);
+        return matzipRepository.findAllByCategory(category, pageRequest).stream()
+            .map(EntireMatzipResponse::mapToEntireMatzipResponse)
+            .toList();
     }
 
     private PageRequest addSortToPageable(final Pageable pageable) {
