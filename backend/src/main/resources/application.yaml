@@ -10,6 +10,14 @@ spring:
       hibernate:
         format_sql: true
     show-sql: true
+
+springdoc:
+  swagger-ui:
+    path: matzip.html
+  version: v1
+  paths-to-match:
+    - /api/matzip/**
+
 logging:
   level:
     org.hibernate.SQL: debug
