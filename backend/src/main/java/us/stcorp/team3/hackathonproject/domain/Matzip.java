@@ -14,6 +14,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import us.stcorp.team3.hackathonproject.common.BaseTimeEntity;
+import us.stcorp.team3.hackathonproject.dto.MatzipRequest;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
@@ -74,5 +75,16 @@ public class Matzip extends BaseTimeEntity {
         String address, Integer price, Category category, String createdBy, String modifiedBy) {
         return new Matzip(title, content, thumbnail, naverRating, naverComment,
             naverUrl, address, price, category, createdBy, modifiedBy);
+    }
+
+    public void updateMatzip(MatzipRequest matzipRequest) {
+        this.title = matzipRequest.title();
+        this.content = matzipRequest.content();
+        this.thumbnail = matzipRequest.thumbnail();
+        this.naverRating = matzipRequest.naverRating();
+        this.naverComment = matzipRequest.naverComment();
+        this.naverUrl = matzipRequest.naverUrl();
+        this.address = matzipRequest.address();
+        this.category = matzipRequest.category();
     }
 }
