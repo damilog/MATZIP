@@ -62,6 +62,17 @@ public class MatzipService {
     }
 
     @Transactional
+    public void modifyMatzip(final long matzipId, final MatzipRequest matzipRequest) {
+        Optional<Matzip> matzipOptional = matzipRepository.findById(matzipId);
+        if (matzipOptional.isPresent()) {
+            Matzip matzip = matzipOptional.get();
+            matzip.updateMatzip(matzipRequest);
+            return;
+        }
+        throw new NoSuchElementException("존재하지 않는 맛집입니다.");
+    }
+
+    @Transactional
     public void deleteMatzip(final long matzipId) {
         matzipRepository.deleteById(matzipId);
     }
