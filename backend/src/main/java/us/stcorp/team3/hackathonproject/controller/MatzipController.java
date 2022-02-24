@@ -46,8 +46,14 @@ public class MatzipController {
     }
 
     @GetMapping("/{matzipId}")
-    public ResponseEntity<MatzipResponse> findMatzip(@PathVariable long matzipId) {
+    private ResponseEntity<MatzipResponse> findMatzip(@PathVariable long matzipId) {
         return ResponseEntity.ok(matzipService.findMatzip(matzipId));
+    }
+
+    @GetMapping("/category/{category}")
+    public ResponseEntity<List<EntireMatzipResponse>> findAllMatzipFilterByCategory(
+        @PathVariable Category category, @PageableDefault(size = 12) Pageable pageable) {
+        return ResponseEntity.ok(matzipService.findAllMatzipFilterByCategory(category, pageable));
     }
 
     @PostMapping("/{matzipId}/reviews")
