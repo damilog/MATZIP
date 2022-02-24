@@ -92,7 +92,7 @@ class MatzipControllerTest {
                 "서울스퀘어", "2만원대", Category.양식, "민철", "민철"));
 
         entireMatzipRespons = matzips.stream()
-            .map(EntireMatzipResponse::matToRecord)
+            .map(EntireMatzipResponse::mapToRecord)
             .collect(Collectors.toList());
 
         List<Matzip> expected = List.of(
@@ -134,7 +134,7 @@ class MatzipControllerTest {
                 "서울스퀘어", "2만원대", Category.양식, "민철", "민철"));
 
         expectedResult = expected.stream()
-            .map(EntireMatzipResponse::matToRecord)
+            .map(EntireMatzipResponse::mapToRecord)
             .collect(Collectors.toList());
 
         matzipRequest = new MatzipRequest("민철이네 분식", "떡볶이 존맛!!", "www.11st.co.kr", 5.0f, 123l,
@@ -168,6 +168,7 @@ class MatzipControllerTest {
     @DisplayName("[POST] /matzip - 새로운 맛집을 등록")
     @Test
     void registerNewMatzip() throws Exception {
+        //given
         String request = objectMapper.writeValueAsString(matzipRequest);
         // when
         mvc.perform(
@@ -176,8 +177,7 @@ class MatzipControllerTest {
                     .contentType(MediaType.APPLICATION_JSON)
                     .accept(MediaType.APPLICATION_JSON))
             .andExpect(status().isCreated())
-            .andExpect(content().string("Your Request is Succeed"))
-            .andDo(print());
+            .andExpect(content().string("Your Request has Succeed"));
         // then
         then(matzipService).should().saveMatzip(matzipRequest);
     }
@@ -191,8 +191,7 @@ class MatzipControllerTest {
             )
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-            .andExpect(jsonPath("length()").value(8))
-            .andDo(print());
+            .andExpect(jsonPath("length()").value(8));
 
     }
 }
