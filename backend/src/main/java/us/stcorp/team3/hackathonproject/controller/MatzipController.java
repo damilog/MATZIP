@@ -30,9 +30,9 @@ public class MatzipController {
     }
 
     @PostMapping
-    public ResponseEntity<String> register(@RequestBody MatzipRequest matzipRequest) {
+    public ResponseEntity<String> registerNewMatzip(@RequestBody MatzipRequest matzipRequest) {
         matzipService.saveMatzip(matzipRequest);
-        return new ResponseEntity<>("Your Request is Succeed", HttpStatus.CREATED);
+        return new ResponseEntity<>("Your Request has Succeed", HttpStatus.CREATED);
     }
 
     @GetMapping("/category")
