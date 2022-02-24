@@ -154,4 +154,18 @@ class MatzipControllerTest {
         // then
         then(matzipService).should().findAllMatzip(pageRequest);
     }
+
+    @DisplayName("[GET] /category - 전체 카테고리 항목 조회")
+    @Test
+    void getCategories() throws Exception {
+        // when-then
+        mvc.perform(
+                get("/api/matzip/category")
+            )
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+            .andExpect(jsonPath("length()").value(8))
+            .andDo(print());
+
+    }
 }
