@@ -1,11 +1,7 @@
 import styled from 'styles/themedComponents';
 import NativeSelect from '@material-ui/core/NativeSelect';
 
-const SelectBox = ({ selectArray, state, setState, width }) => {
-  const handleChange = (event) => {
-    setState(event.target.value);
-  };
-
+const SelectBox = ({ selectArray, width, name, onChange }) => {
   const options = selectArray.map(({ id, name }) => (
     <option key={id} value={name}>
       {name}
@@ -13,7 +9,7 @@ const SelectBox = ({ selectArray, state, setState, width }) => {
   ));
 
   return (
-    <SelectBoxLayer onChange={handleChange} width={width}>
+    <SelectBoxLayer onChange={onChange} width={width} name={name}>
       {options}
     </SelectBoxLayer>
   );

@@ -1,42 +1,28 @@
+import { useSetRecoilState } from 'recoil';
 import styled from 'styles/themedComponents';
+import API from 'util/API';
+import { placeDataAtom } from 'store/homeStore';
 
-const Filter = () => {
-  const categories = [
-    {
-      title: '#한식',
-      id: 1,
-    },
-    {
-      title: '#양식',
-      id: 2,
-    },
-    {
-      title: '#중식',
-      id: 3,
-    },
-    {
-      title: '#일식',
-      id: 4,
-    },
-    {
-      title: '#패스트푸드',
-      id: 5,
-    },
-    {
-      title: '#회식장소',
-      id: 6,
-    },
-    {
-      title: '#분식',
-      id: 7,
-    },
-  ];
+const Filter = ({ data }) => {
+  const setData = useSetRecoilState(placeDataAtom);
 
-  const Filter = categories.map(({ title, id }) => (
-    <FilterBox key={id}>
-      <div>{title}</div>
-    </FilterBox>
-  ));
+  const fetchData = async (name) => {
+    const { content } = await API.getPlaceByCategory(name, 0);
+    setData(content);
+  };
+
+  const Filter = data.map((name, i) => {
+    const handleFilterClick = () => {
+      fetchData(name);
+    };
+
+    return (
+      <FilterBox key={i} name={name} onClick={handleFilterClick}>
+        <div>{name}</div>
+      </FilterBox>
+    );
+  });
+
   return (
     <Layout>
       <FilterLayer>{Filter}</FilterLayer>
@@ -54,9 +40,6 @@ const FilterLayer = styled.ul`
   justify-content: center;
   overflow: auto;
   white-space: nowrap;
-  ::-webkit-scrollbar {
-    display: none;
-  }
 `;
 const FilterBox = styled.li`
   display: flex;
