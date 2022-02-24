@@ -1,7 +1,6 @@
 package us.stcorp.team3.hackathonproject.service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -24,7 +23,7 @@ public class MatzipService {
         final Pageable pageRequest = addSortToPageable(pageable);
         return matzipRepository.findAll(pageRequest).stream()
             .map(EntireMatzipResponse::matToRecord)
-            .collect(Collectors.toList());
+            .toList();
     }
 
     @Transactional
