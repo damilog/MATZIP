@@ -28,7 +28,6 @@ public class MatzipReviewService {
         reviewRepository.save(MatzipReviewRequest.mapToMatzipReview(matzip, matzipReviewRequest));
 
         QMatzip qMatzip = QMatzip.matzip;
-        JPAQueryFactory queryFactory = new JPAQueryFactory(entityManager);
         Double ratingAverage = queryFactory.select(matzipReview.rating.avg())
             .from(matzipReview).fetchOne();
         queryFactory.update(qMatzip)
