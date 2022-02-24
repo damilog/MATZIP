@@ -6,7 +6,7 @@ const paths = [
   },
   {
     name: 'place',
-    path: '/place',
+    path: '/place/:placeId',
     title: '장소',
   },
   {
