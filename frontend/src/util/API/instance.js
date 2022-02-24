@@ -3,7 +3,7 @@ import interceptor from './interceptor';
 
 const createInstance = (isWithAuth) => {
   const instance = axios.create({
-    baseURL: '',
+    baseURL: 'https://api.g1tommy.me/api/matzip',
   });
   return interceptor(instance, isWithAuth);
 };
