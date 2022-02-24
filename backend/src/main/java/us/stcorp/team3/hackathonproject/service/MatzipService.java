@@ -3,6 +3,7 @@ package us.stcorp.team3.hackathonproject.service;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
@@ -19,8 +20,14 @@ public class MatzipService {
 
     @Transactional(readOnly = true)
     public List<MatzipResponse> findAllMatzip(final Pageable pageable) {
-        return matzipRepository.findAllByPage(pageable, Sort.by(Direction.DESC, "rating")).stream()
+        final Pageable pageRequest = addSortToPageable(pageable);
+        return matzipRepository.findAll(pageRequest).stream()
             .map(MatzipResponse::matToRecord)
             .collect(Collectors.toList());
+    }
+
+    private PageRequest addSortToPageable(final Pageable pageable) {
+        return PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(),
+            Sort.by(Direction.DESC, "rating"));
     }
 }
