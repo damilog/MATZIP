@@ -13,7 +13,6 @@ import { red } from '@material-ui/core/colors';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import SelectModal from 'components/common/SelectModal';
 import useToggle from 'hooks/useToggle';
-import StarRating from 'components/common/StarRating';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -50,7 +49,7 @@ const PlaceReviewCard = () => {
             </MoreIconLayer>
           }
           title="닉네임"
-          subheader="리뷰 33 "
+          subheader="리뷰 33 | 조회수 200"
         />
         <CardMedia
           className={classes.media}
