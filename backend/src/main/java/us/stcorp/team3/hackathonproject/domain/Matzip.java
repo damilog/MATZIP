@@ -2,6 +2,8 @@ package us.stcorp.team3.hackathonproject.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -44,18 +46,16 @@ public class Matzip extends BaseTimeEntity {
     private String naverUrl;
     private String address;
     private String price;
+    @Enumerated(EnumType.STRING)
+    private Category category;
     @NotNull
     private String createdBy;
     @NotNull
     private String modifiedBy;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "CATEGORY_ID")
-    private Category category;
-
     private Matzip(String title, String content, Integer viewCount, Float rating,
         String thumbnail, Float naverRating, Long naverComment, String naverUrl,
-        String address, String price, String createdBy,
+        String address, String price, Category category, String createdBy,
         String modifiedBy) {
         this.title = title;
         this.content = content;
@@ -67,15 +67,15 @@ public class Matzip extends BaseTimeEntity {
         this.naverUrl = naverUrl;
         this.address = address;
         this.price = price;
+        this.category = category;
         this.createdBy = createdBy;
         this.modifiedBy = modifiedBy;
     }
 
     public static Matzip of(String title, String content, Integer viewCount, Float rating,
         String thumbnail, Float naverRating, Long naverComment, String naverUrl,
-        String address, String price, String createdBy,
-        String modifiedBy) {
+        String address, String price, Category category, String createdBy, String modifiedBy) {
         return new Matzip(title, content, viewCount, rating, thumbnail, naverRating, naverComment,
-            naverUrl, address, price, createdBy, modifiedBy);
+            naverUrl, address, price, category, createdBy, modifiedBy);
     }
 }
