@@ -19,4 +19,8 @@ public class MatzipReviewService {
             .orElseThrow(() -> new IllegalArgumentException("no such data"));
         reviewRepository.save(MatzipReviewRequest.mapToMatzipReview(matzip, matzipReviewRequest));
     }
+
+    public void deleteMatzipReview(Long matzipReviewId) {
+        reviewRepository.deleteById(matzipReviewId);
+    }
 }
