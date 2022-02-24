@@ -47,4 +47,8 @@ public class MatzipReviewService {
             .where(matzip.id.eq(matzipId))
             .execute();
     }
+
+    public void deleteMatzipReview(Long matzipReviewId) {
+        reviewRepository.deleteById(matzipReviewId);
+    }
 }
