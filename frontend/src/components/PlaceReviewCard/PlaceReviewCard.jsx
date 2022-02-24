@@ -29,6 +29,18 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const selection = [
+  {
+    title: '수정하기',
+    path: '/editor',
+    id: 1,
+  },
+  {
+    title: '삭제하기',
+    id: 2,
+  },
+];
+
 const PlaceReviewCard = () => {
   const classes = useStyles();
   const [isToggle, setToggle] = useToggle(false);
@@ -45,7 +57,7 @@ const PlaceReviewCard = () => {
           action={
             <MoreIconLayer aria-label="settings" onClick={setToggle}>
               <MoreVertIcon />
-              {isToggle && <SelectModal />}
+              {isToggle && <SelectModal selection={selection} width={'100px'} />}
             </MoreIconLayer>
           }
           title="닉네임"
