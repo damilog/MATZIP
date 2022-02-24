@@ -16,6 +16,8 @@ import us.stcorp.team3.hackathonproject.domain.Category;
 import us.stcorp.team3.hackathonproject.dto.EntireMatzipResponse;
 import us.stcorp.team3.hackathonproject.dto.MatzipRequest;
 import us.stcorp.team3.hackathonproject.dto.MatzipResponse;
+import us.stcorp.team3.hackathonproject.dto.MatzipReviewRequest;
+import us.stcorp.team3.hackathonproject.service.MatzipReviewService;
 import us.stcorp.team3.hackathonproject.service.MatzipService;
 
 @RestController
@@ -24,6 +26,7 @@ import us.stcorp.team3.hackathonproject.service.MatzipService;
 public class MatzipController {
 
     private final MatzipService matzipService;
+    private final MatzipReviewService matzipReviewService;
 
     @GetMapping
     public ResponseEntity<List<EntireMatzipResponse>> findAllMatzip(
@@ -43,7 +46,15 @@ public class MatzipController {
     }
 
     @GetMapping("/{matzipId}")
-    private ResponseEntity<MatzipResponse> findMatzip(@PathVariable long matzipId) {
+    public ResponseEntity<MatzipResponse> findMatzip(@PathVariable long matzipId) {
         return ResponseEntity.ok(matzipService.findMatzip(matzipId));
+    }
+
+    @PostMapping("/{matzipId}/reviews")
+    public ResponseEntity<String> registerNewMatzipReview(
+        @PathVariable Long matzipId,
+        @RequestBody MatzipReviewRequest matzipReviewRequest) {
+        matzipReviewService.saveMatzipReview(matzipId, matzipReviewRequest);
+        return new ResponseEntity<>("MatzipReview is saved successfully", HttpStatus.CREATED);
     }
 }

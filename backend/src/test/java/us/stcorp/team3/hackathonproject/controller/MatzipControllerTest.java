@@ -25,6 +25,7 @@ import us.stcorp.team3.hackathonproject.domain.Category;
 import us.stcorp.team3.hackathonproject.domain.Matzip;
 import us.stcorp.team3.hackathonproject.dto.EntireMatzipResponse;
 import us.stcorp.team3.hackathonproject.dto.MatzipRequest;
+import us.stcorp.team3.hackathonproject.service.MatzipReviewService;
 import us.stcorp.team3.hackathonproject.service.MatzipService;
 
 @WebMvcTest(MatzipController.class)
@@ -39,6 +40,9 @@ class MatzipControllerTest {
 
     @MockBean
     private MatzipService matzipService;
+    @MockBean
+    private MatzipReviewService matzipReviewService;
+
 
     public MatzipControllerTest(@Autowired MockMvc mvc,
         @Autowired ObjectMapper objectMapper) {
