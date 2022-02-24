@@ -92,7 +92,7 @@ class MatzipControllerTest {
                 "서울스퀘어", 20000, Category.양식, "민철", "민철"));
 
         entireMatzipRespons = matzips.stream()
-            .map(EntireMatzipResponse::mapToRecord)
+            .map(EntireMatzipResponse::mapToEntireMatzipResponse)
             .collect(Collectors.toList());
 
         List<Matzip> expected = List.of(
@@ -134,7 +134,7 @@ class MatzipControllerTest {
                 "서울스퀘어", 20000, Category.양식, "민철", "민철"));
 
         expectedResult = expected.stream()
-            .map(EntireMatzipResponse::mapToRecord)
+            .map(EntireMatzipResponse::mapToEntireMatzipResponse)
             .collect(Collectors.toList());
 
         matzipRequest = new MatzipRequest("민철이네 분식", "떡볶이 존맛!!", "www.11st.co.kr", 5.0d, 123l,
