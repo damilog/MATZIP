@@ -32,10 +32,10 @@ class MatzipControllerTest {
 
     private final MockMvc mvc;
     private final ObjectMapper objectMapper;
-    List<EntireMatzipResponse> entireMatzipRespons;
-    List<EntireMatzipResponse> expectedResult;
-    PageRequest pageRequest;
-    MatzipRequest matzipRequest;
+    private List<EntireMatzipResponse> entireMatzipRespons;
+    private List<EntireMatzipResponse> expectedResult;
+    private PageRequest pageRequest;
+    private MatzipRequest matzipRequest;
 
     @MockBean
     private MatzipService matzipService;
