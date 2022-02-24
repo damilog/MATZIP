@@ -78,6 +78,11 @@ public class MatzipService {
         matzipRepository.deleteById(matzipId);
     }
 
+    @Transactional
+    public void deleteMatzip(final long matzipId) {
+        matzipRepository.deleteById(matzipId);
+    }
+
     private PageRequest addSortToPageable(final Pageable pageable) {
         return PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(),
             Sort.by(Direction.DESC, "rating"));
