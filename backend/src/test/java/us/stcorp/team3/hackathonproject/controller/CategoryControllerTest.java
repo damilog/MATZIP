@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
@@ -29,17 +30,21 @@ class CategoryControllerTest {
     @MockBean
     CategoryService categoryService;
 
-    public CategoryControllerTest(MockMvc mvc) {
+    public CategoryControllerTest(@Autowired MockMvc mvc) {
         this.mvc = mvc;
     }
 
     @BeforeEach
     void setUp() {
         List<Category> categories = List.of(
-            Category.of("한식", "지혀니", "지혀니"),
-            Category.of("중식", "지혀니", "지혀니"),
-            Category.of("양식", "지혀니", "지혀니"),
-            Category.of("일식", "지혀니", "지혀니")
+            Category.한식,
+            Category.일식,
+            Category.디저트,
+            Category.분식,
+            Category.술집,
+            Category.양식,
+            Category.중식,
+            Category.퓨전
         );
 
         expectedResponse = categories.stream()
@@ -61,7 +66,7 @@ class CategoryControllerTest {
             )
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-            .andExpect(jsonPath("length()").value(4))
+            .andExpect(jsonPath("length()").value(8))
             .andDo(print());
 
     }
