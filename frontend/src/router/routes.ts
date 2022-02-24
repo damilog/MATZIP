@@ -7,6 +7,7 @@ interface IComponentByPath {
 
 const componentByPath: IComponentByPath = {
   home: lazy(() => import('pages/Home')),
+  place: lazy(() => import('pages/Place')),
 };
 
 const routes = paths.map(({ name, path }) => ({
