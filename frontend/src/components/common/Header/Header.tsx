@@ -1,12 +1,14 @@
 import styled from 'styles/themedComponents';
 import logo from 'assets/images/logo.png';
 import BackButton from 'components/common/BackButton';
+import MyMenu from 'components/MyMenu';
 
 const Header = ({ hasBackButton = false }) => {
   return (
     <Layout>
       {hasBackButton && <BackButton />}
       <Logo />
+      <MyMenu />
     </Layout>
   );
 };

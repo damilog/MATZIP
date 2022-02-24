@@ -13,7 +13,6 @@ import { red } from '@material-ui/core/colors';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import SelectModal from 'components/common/SelectModal';
 import useToggle from 'hooks/useToggle';
-import StarRating from 'components/common/StarRating';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,6 +28,18 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: red[500],
   },
 }));
+
+const selection = [
+  {
+    title: '수정하기',
+    path: '/editor',
+    id: 1,
+  },
+  {
+    title: '삭제하기',
+    id: 2,
+  },
+];
 
 const PlaceReviewCard = () => {
   const classes = useStyles();
@@ -46,11 +57,11 @@ const PlaceReviewCard = () => {
           action={
             <MoreIconLayer aria-label="settings" onClick={setToggle}>
               <MoreVertIcon />
-              {isToggle && <SelectModal />}
+              {isToggle && <SelectModal selection={selection} width={'100px'} />}
             </MoreIconLayer>
           }
           title="닉네임"
-          subheader="리뷰 33 "
+          subheader="리뷰 33 | 조회수 200"
         />
         <CardMedia
           className={classes.media}
