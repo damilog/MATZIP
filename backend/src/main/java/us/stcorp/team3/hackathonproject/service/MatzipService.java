@@ -39,15 +39,16 @@ public class MatzipService {
         matzipRepository.save(MatzipRequest.mapToEntity(matzipRequest));
     }
 
-    @Transactional(readOnly = true)
+    @Transactional
     public MatzipResponse findMatzip(final long matzipId) {
         final Optional<Matzip> matzipOptional = matzipRepository.findById(matzipId);
-        final List<MatzipReviewResponse> matzipReviewRespons = reviewRepository.findAllByMatzipId(matzipId).stream()
+        final List<MatzipReviewResponse> matzipReviewResponse = reviewRepository.findAllByMatzipId(matzipId).stream()
             .map(MatzipReviewResponse::matToReviewResponse)
             .toList();
         if (matzipOptional.isPresent()) {
             final Matzip matzip = matzipOptional.get();
-            return MatzipResponse.mapToMatzipResponse(matzip, matzipReviewRespons);
+            matzip.increaseViewCount();
+            return MatzipResponse.mapToMatzipResponse(matzip, matzipReviewResponse);
         }
         throw new NoSuchElementException("존재하지 않는 맛집입니다.");
     }
