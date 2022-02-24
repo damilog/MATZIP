@@ -17,7 +17,4 @@ public record MatzipResponse(Long id, String title, String content, Integer view
             matzip.getNaverRating(), matzip.getNaverComment(), matzip.getAddress(),
             matzip.getPrice(), matzip.getCategory(), matzip.getRating(), reviews);
     }
-
-
-
 }
