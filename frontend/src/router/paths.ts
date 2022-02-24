@@ -9,6 +9,11 @@ const paths = [
     path: '/place',
     title: '장소',
   },
+  {
+    name: 'editor',
+    path: '/editor',
+    title: '에디터',
+  },
 ];
 
 export default paths;

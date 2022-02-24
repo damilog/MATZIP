@@ -26,7 +26,7 @@ const Place = () => {
 };
 
 const Main = styled.main`
-  background-color: ${({ theme }) => theme.colors.lightGray};
+  background-color: ${({ theme }) => theme.colors.gray.x_light};
   > div {
     display: flex;
     justify-content: center;
