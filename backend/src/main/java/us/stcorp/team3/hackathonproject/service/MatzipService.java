@@ -1,6 +1,7 @@
 package us.stcorp.team3.hackathonproject.service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
@@ -48,7 +49,7 @@ public class MatzipService {
             final Matzip matzip = matzipOptional.get();
             return MatzipResponse.mapToMatzipResponse(matzip, matzipReviewRespons);
         }
-        throw new IllegalArgumentException("존재하지 않는 맛집입니다.");
+        throw new NoSuchElementException("존재하지 않는 맛집입니다.");
     }
 
     @Transactional(readOnly = true)
