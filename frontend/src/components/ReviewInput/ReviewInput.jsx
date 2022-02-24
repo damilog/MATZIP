@@ -37,9 +37,9 @@ const Input = styled.input`
 const SubmitButton = styled.button`
   width: 70px;
   font-size: 18px;
-  color: ${({ theme }) => theme.colors.mainRed};
+  color: ${({ theme }) => theme.colors.red.main};
   background-color: ${({ theme }) => theme.colors.white};
-  border: 1px solid ${({ theme }) => theme.colors.mainRed};
+  border: 1px solid ${({ theme }) => theme.colors.red.main};
   border-radius: 10px;
   margin-left: 10px;
 `;

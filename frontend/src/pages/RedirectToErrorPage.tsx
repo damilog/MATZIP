@@ -38,7 +38,7 @@ const LinkLayer = styled.div`
   padding: 20px 0;
   font-size: 2.3rem;
   font-weight: bold;
-  color: ${({ theme }) => theme.colors.mainRed};
+  color: ${({ theme }) => theme.colors.red.main};
 `;
 
 export default RedirectToErrorPage;

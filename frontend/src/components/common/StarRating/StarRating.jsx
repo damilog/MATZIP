@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Rating from '@material-ui/lab/Rating';
 import Box from '@material-ui/core/Box';
 
-const StarRating = ({ rating, controlled }) => {
+const StarRating = ({ rating, controlled = false }) => {
   const [value, setValue] = useState(rating);
 
   return (

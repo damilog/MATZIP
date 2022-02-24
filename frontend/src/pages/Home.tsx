@@ -33,12 +33,12 @@ const HeaderLayout = styled.div`
   padding-top: 32px;
   top: -32px;
   z-index: 9;
-  background-color: ${({ theme }) => theme.colors.lightRed};
+  background-color: ${({ theme }) => theme.colors.red.x_light};
 `;
 const MainLayout = styled.main`
   display: flex;
   justify-content: center;
-  background-color: ${({ theme }) => theme.colors.lightGray};
+  background-color: ${({ theme }) => theme.colors.gray.x_light};
 `;
 
 const Grid = styled.div`

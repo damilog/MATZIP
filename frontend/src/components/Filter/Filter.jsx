@@ -71,7 +71,7 @@ const FilterBox = styled.li`
   cursor: pointer;
   > div {
     font-weight: bold;
-    color: ${({ theme }) => theme.colors.mainRed};
+    color: ${({ theme }) => theme.colors.red.main};
   }
 `;
 
