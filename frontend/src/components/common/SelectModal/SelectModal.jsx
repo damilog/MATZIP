@@ -1,41 +1,41 @@
 import styled from 'styles/themedComponents';
-const selection = [
-  {
-    title: '수정하기',
-    path: '/edit',
-    id: 1,
-  },
-  {
-    title: '삭제하기',
-    id: 2,
-  },
-];
+import { Link } from 'react-router-dom';
 
-const SelectModal = () => {
-  const Select = selection.map(({ title, path, id }) => <li key={id}>{title}</li>);
-  return <ModalLayout>{Select}</ModalLayout>;
+const SelectModal = ({ width, selection }) => {
+  const Select = selection.map(({ title, id, path = null }) => {
+    return path ? (
+      <Link to={path} key={id}>
+        <ListLayer key={`select-${id}`}>{title}</ListLayer>
+      </Link>
+    ) : (
+      <ListLayer key={`select-${id}`}>{title}</ListLayer>
+    );
+  });
+
+  return <ModalLayout width={width}>{Select}</ModalLayout>;
 };
-
-export default SelectModal;
 
 const ModalLayout = styled.ul`
   position: absolute;
-  top: 40px;
+  top: 55px;
   right: 10px;
-  width: 100px;
+  width: ${({ width }) => width};
+  color: ${({ theme }) => theme.colors.black};
   background-color: ${({ theme }) => theme.colors.white};
   box-shadow: 0px 2px 1px 1px lightgrey;
   border-radius: 10px;
   font-size: 17px;
-  > li {
-    border-radius: 10px;
-    padding: 10px;
-    &:hover {
-      background-color: #f5f5f5;
-    }
-  }
-
   > :nth-child(1) {
     border-bottom: 1px ${({ theme }) => theme.colors.gray} solid;
   }
 `;
+
+const ListLayer = styled.li`
+  border-radius: 10px;
+  padding: 10px;
+  &:hover {
+    background-color: #f5f5f5;
+  }
+`;
+
+export default SelectModal;
