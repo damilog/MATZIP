@@ -5,7 +5,7 @@ const RecommendedPlace = () => {
   return (
     <Layout>
       <Title>
-        <span>한식</span> 맛집 둘러보기
+        <span>연관 맛집</span> 둘러보기
       </Title>
       <Main>
         <PlaceCarousel

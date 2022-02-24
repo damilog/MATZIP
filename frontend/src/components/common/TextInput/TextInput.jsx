@@ -5,19 +5,17 @@ const TextInput = ({
   value,
   type,
   label,
+  name,
   size = 'small',
   variant = 'outlined',
   width = '100px',
-  isRequired = false,
+  isRequired = true,
   state,
   setState,
+  onChange,
 }) => {
   const handleEmptyInput = () => {
-    return isRequired && state === '';
-  };
-
-  const handleInputChange = (e) => {
-    setState(e.target.value);
+    return isRequired && value === '';
   };
 
   return (
@@ -26,9 +24,10 @@ const TextInput = ({
       error={handleEmptyInput()}
       type={type}
       label={label}
+      name={name}
       variant={variant}
       size={size}
-      onChange={handleInputChange}
+      onChange={onChange}
       width={width}
     />
   );

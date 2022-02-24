@@ -1,7 +1,23 @@
+import { useRecoilState } from 'recoil';
+import { newPlaceData } from 'store/editorStore';
 import styled from 'styles/themedComponents';
 import TextInput from 'components/common/TextInput';
 import SelectBox from 'components/common/SelectBox';
 import GradientButton from 'components/common/GradientButton';
+import EditorService from 'service/EditorService';
+// {
+//   "title": "string",
+//   "content": "string",
+//   "thumbnail": "string",
+//   "naverRating": 0,
+//   "naverComment": 0,
+//   "naverUrl": "string",
+//   "address": "string",
+//   "price": 0,
+//   "category": "디저트",
+//   "username": "string"
+// }
+// 다필요
 
 const categories = [
   { id: 1, name: '한식' },
@@ -10,31 +26,74 @@ const categories = [
   { id: 4, name: '일식' },
 ];
 
-const Input = ({ title, width }) => {
+const Input = ({ title, width, name, onChange }) => {
   return (
     <TextInputLayer>
-      <TextInput width={width} label={title} variant={'standard'} />
+      <TextInput width={width} label={title} name={name} variant={'standard'} onChange={onChange} />
     </TextInputLayer>
   );
 };
 
 const EditorForm = () => {
+  const { handlePlaceInputChange, handleSubmitNewPlace } = EditorService();
   return (
     <ul>
       <TextInputLayer>
-        <SelectBox selectArray={categories} width={'200px'} />
+        <SelectBox
+          selectArray={categories}
+          width={'200px'}
+          name={'category'}
+          onChange={handlePlaceInputChange}
+        />
       </TextInputLayer>
-      <Input title={'작성자'} width={'300px'} />
-      <Input title={'상호명'} width={'300px'} />
-      <Input title={'주소'} width={'300px'} />
-      <Input title={'추천 메뉴'} width={'300px'} />
-      <Input title={'가격대'} type={'number'} width={'300px'} />
+      <Input title={'작성자'} name={'username'} width={'300px'} onChange={handlePlaceInputChange} />
+      <Input title={'상호명'} name={'title'} width={'300px'} onChange={handlePlaceInputChange} />
+      <Input title={'주소'} name={'address'} width={'300px'} onChange={handlePlaceInputChange} />
+      <Input
+        title={'추천 메뉴'}
+        name={'content'}
+        width={'300px'}
+        onChange={handlePlaceInputChange}
+      />
+      <Input
+        title={'가격대'}
+        name={'price'}
+        type={'number'}
+        width={'300px'}
+        onChange={handlePlaceInputChange}
+      />
+      <Input
+        title={'이미지 URL'}
+        name={'thumbnail'}
+        width={'300px'}
+        onChange={handlePlaceInputChange}
+      />
       <HelpComment>식당 추천을 위해 필요해요! 😋</HelpComment>
-      <Input title={'네이버 지도 URL'} type={'text'} width={'300px'} />
-      <Input title={'네이버 리뷰수'} type={'number'} width={'300px'} />
-      <Input title={'네이버 평점'} type={'number'} width={'300px'} />
+      <Input
+        title={'네이버 지도 URL'}
+        name={'naverUrl'}
+        type={'text'}
+        width={'300px'}
+        onChange={handlePlaceInputChange}
+      />
+      <Input
+        title={'네이버 리뷰수'}
+        name={'naverComment'}
+        type={'number'}
+        width={'300px'}
+        onChange={handlePlaceInputChange}
+      />
+      <Input
+        title={'네이버 평점'}
+        name={'naverRating'}
+        type={'number'}
+        width={'300px'}
+        onChange={handlePlaceInputChange}
+      />
       <TextInputLayer>
-        <GradientButton width={'300px'}>등록하기</GradientButton>
+        <GradientButton width={'300px'} onClick={handleSubmitNewPlace}>
+          등록하기
+        </GradientButton>
       </TextInputLayer>
     </ul>
   );

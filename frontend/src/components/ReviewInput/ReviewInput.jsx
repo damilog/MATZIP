@@ -1,14 +1,39 @@
+import { useCallback, useEffect, useState } from 'react';
+import { useRecoilValue } from 'recoil';
+import { placeIdAtom } from 'store/placeStore';
 import StarRating from 'components/common/StarRating';
 import styled from 'styles/themedComponents';
+import API from 'util/API';
 
 const ReviewInput = () => {
+  const [, updateState] = useState();
+  const forceUpdate = useCallback(() => updateState({}), []);
+
+  const placeId = useRecoilValue(placeIdAtom);
+  const [review, setReview] = useState('');
+  const [rating, setRating] = useState(0);
+
+  const handleInputChange = (e) => {
+    const { value } = e.target;
+    setReview(value);
+  };
+
+  const handleReviewSubmit = () => {
+    const req = {
+      content: review,
+      rating,
+    };
+
+    API.postReview(placeId, req);
+  };
+
   return (
     <Layout>
       <div>
-        <StarRating rating={3} controlled={true} />
+        <StarRating controlled={true} state={rating} setState={setRating} />
       </div>
-      <Input placeholder="리뷰를 입력해주세요" />
-      <SubmitButton>등록</SubmitButton>
+      <Input placeholder="리뷰를 입력해주세요" onChange={handleInputChange} />
+      <SubmitButton onClick={handleReviewSubmit}>등록</SubmitButton>
     </Layout>
   );
 };
