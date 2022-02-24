@@ -30,7 +30,18 @@
 
 
 ### Machine-Learning
-- 윤경님 적어주세요!
+- Languages
+  - Python
+- SQL
+  - mysql
+- FastAPI
+
+- Pandas
+- matplotlib
+- seaborn
+- Model
+  - Kmodes
+  - kprototype
 
 ### Collaboration
 - Git, Github, Wiki
