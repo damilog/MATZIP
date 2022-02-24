@@ -34,8 +34,15 @@ public class Matzip extends BaseTimeEntity {
     @NotNull
     private Integer viewCount;
     @NotNull
-    private Integer likeCount;
-    private String distance;
+    private Float rating;
+    @NotNull
+    private String thumbnail;
+    @NotNull
+    private Float naverRating;
+    @NotNull
+    private Long naverComment;
+    private String naverUrl;
+    private String address;
     private String price;
     @NotNull
     private String createdBy;
@@ -46,21 +53,29 @@ public class Matzip extends BaseTimeEntity {
     @JoinColumn(name = "CATEGORY_ID")
     private Category category;
 
-    private Matzip(String title, String content, Integer view, Integer like,
-        String distance, String price, String createdBy,
+    private Matzip(String title, String content, Integer viewCount, Float rating,
+        String thumbnail, Float naverRating, Long naverComment, String naverUrl,
+        String address, String price, String createdBy,
         String modifiedBy) {
         this.title = title;
         this.content = content;
-        this.viewCount = view;
-        this.likeCount = like;
-        this.distance = distance;
+        this.viewCount = viewCount;
+        this.rating = rating;
+        this.thumbnail = thumbnail;
+        this.naverRating = naverRating;
+        this.naverComment = naverComment;
+        this.naverUrl = naverUrl;
+        this.address = address;
         this.price = price;
         this.createdBy = createdBy;
         this.modifiedBy = modifiedBy;
     }
 
-    public static Matzip of(String title, String content, Integer view, Integer like,
-        String distance, String price, String createdBy, String modifiedBy) {
-        return new Matzip(title, content, view, like, distance, price, createdBy, modifiedBy);
+    public static Matzip of(String title, String content, Integer viewCount, Float rating,
+        String thumbnail, Float naverRating, Long naverComment, String naverUrl,
+        String address, String price, String createdBy,
+        String modifiedBy) {
+        return new Matzip(title, content, viewCount, rating, thumbnail, naverRating, naverComment,
+            naverUrl, address, price, createdBy, modifiedBy);
     }
 }

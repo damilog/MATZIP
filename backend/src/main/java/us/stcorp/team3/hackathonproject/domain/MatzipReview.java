@@ -28,32 +28,28 @@ public class MatzipReview extends BaseTimeEntity {
     private String comment;
 
     @NotNull
-    private String username;
-
-    @NotNull
-    private String password;
-    @NotNull
     private String createdBy;
     @NotNull
     private String modifiedBy;
+    @NotNull
+    private Integer rating;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "MATZIP_ID")
     private Matzip matzip;
 
 
-    private MatzipReview(String comment, String username, String password, String createdBy,
-        String modifiedBy, Matzip matzip) {
+    private MatzipReview(String comment, String createdBy,
+        String modifiedBy, Matzip matzip, Integer rating) {
         this.comment = comment;
-        this.username = username;
-        this.password = password;
         this.createdBy = createdBy;
         this.modifiedBy = modifiedBy;
         this.matzip = matzip;
+        this.rating = rating;
     }
 
-    public MatzipReview of(String comment, String username, String password, String createdBy,
-        String modifiedBy, Matzip matzip) {
-        return new MatzipReview(comment, username, password, createdBy, modifiedBy, matzip);
+    public MatzipReview of(String comment, String createdBy,
+        String modifiedBy, Matzip matzip, Integer rating) {
+        return new MatzipReview(comment, createdBy, modifiedBy, matzip, rating);
     }
 }
