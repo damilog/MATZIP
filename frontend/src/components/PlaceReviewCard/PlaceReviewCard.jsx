@@ -59,6 +59,7 @@ const PlaceReviewCard = () => {
     category,
     rating,
     review,
+    createdBy,
   } = data;
   const classes = useStyles();
   const [isToggle, setToggle] = useToggle(false);
@@ -70,7 +71,7 @@ const PlaceReviewCard = () => {
           <CardHeader
             avatar={
               <Avatar aria-label="recipe" className={classes.avatar}>
-                닉
+                {createdBy?.charAt(0)}
               </Avatar>
             }
             action={
@@ -79,7 +80,7 @@ const PlaceReviewCard = () => {
                 {isToggle && <SelectModal selection={selection} width={'100px'} />}
               </MoreIconLayer>
             }
-            title="닉네임"
+            title={createdBy}
             subheader={`리뷰 ${review?.length} | 조회수 ${viewCount}`}
           />
           <CardMedia className={classes.media} image={`${thumbnail}`} title={title} />
