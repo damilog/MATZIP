@@ -3,7 +3,6 @@ package us.stcorp.team3.hackathonproject.service;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
-import javax.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -27,7 +26,6 @@ public class MatzipService {
 
     private final MatzipRepository matzipRepository;
     private final ReviewRepository reviewRepository;
-    private final EntityManager entityManager;
 
     @Transactional(readOnly = true)
     public Page<EntireMatzipResponse> findAllMatzip(final Pageable pageable) {
@@ -62,22 +60,6 @@ public class MatzipService {
         final PageRequest pageRequest = addSortToPageable(pageable);
 
         return matzipRepository.findEntireMatzipWithPaging(category, pageRequest);
-    }
-
-    @Transactional
-    public void modifyMatzip(final long matzipId, final MatzipRequest matzipRequest) {
-        Optional<Matzip> matzipOptional = matzipRepository.findById(matzipId);
-        if (matzipOptional.isPresent()) {
-            Matzip matzip = matzipOptional.get();
-            matzip.updateMatzip(matzipRequest);
-            return;
-        }
-        throw new NoSuchElementException("존재하지 않는 맛집입니다.");
-    }
-
-    @Transactional
-    public void deleteMatzip(final long matzipId) {
-        matzipRepository.deleteById(matzipId);
     }
 
     @Transactional
