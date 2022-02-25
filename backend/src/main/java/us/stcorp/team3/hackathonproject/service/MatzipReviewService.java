@@ -29,7 +29,9 @@ public class MatzipReviewService {
 
         QMatzip qMatzip = QMatzip.matzip;
         Double ratingAverage = queryFactory.select(matzipReview.rating.avg())
-            .from(matzipReview).fetchOne();
+            .from(matzipReview).groupBy(matzipReview.matzip.id)
+            .having(matzipReview.matzip.id.eq(matzipId))
+            .fetchOne();
         queryFactory.update(qMatzip)
             .set(qMatzip.rating, ratingAverage)
             .where(qMatzip.id.eq(matzipId))
@@ -37,11 +39,13 @@ public class MatzipReviewService {
     }
 
     @Transactional
-    public void deleteMatzipReview(Long matzipReviewId, Long matzipId) {
+    public void deleteMatzipReview(Long matzipId, Long matzipReviewId) {
         reviewRepository.deleteById(matzipReviewId);
-        Double ratingAverage = queryFactory.select(matzipReview.rating.avg())
-            .from(matzipReview).fetchOne();
 
+        Double ratingAverage = queryFactory.select(matzipReview.rating.avg())
+            .from(matzipReview).groupBy(matzipReview.matzip.id)
+            .having(matzipReview.matzip.id.eq(matzipId))
+            .fetchOne();
         queryFactory.update(matzip)
             .set(matzip.rating, ratingAverage)
             .where(matzip.id.eq(matzipId))

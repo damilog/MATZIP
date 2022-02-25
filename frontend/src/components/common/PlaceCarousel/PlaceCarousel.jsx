@@ -1,38 +1,13 @@
 import { useState } from 'react';
+import { useRecoilValue } from 'recoil';
+import { recommendDataAtom } from 'store/placeStore';
 import styled from 'styles/themedComponents';
 import Carousel from 'react-material-ui-carousel';
+import PlaceCard from 'components/PlaceCard';
 
-const items = [
-  {
-    id: 0,
-    name: '서울역 한식 맛집1',
-    description: '밑반찬이 정말 맛있음',
-    address: '서울 용산구 한강대로 405 서울역(철도역)',
-  },
-  {
-    id: 1,
-    name: '서울역 한식 맛집2',
-    description: '밑반찬이 정말 맛있음2',
-    address: '서울 용산구 한강대로 405 서울역(철도역)',
-  },
-  {
-    id: 2,
-    name: '서울역 한식 맛집3',
-    description: '별로임',
-    address: '서울 용산구 한강대로 405 서울역(철도역)',
-  },
-];
-const Place = ({ name, description }) => {
-  return (
-    <>
-      <ImageLayer />
-      <PlaceLayer>{name}</PlaceLayer>
-      <PlaceLayer>{description}</PlaceLayer>
-    </>
-  );
-};
 const PlaceCarousel = () => {
   const [index, setIndex] = useState(0);
+  const recommendData = useRecoilValue(recommendDataAtom);
 
   const handleChange = (cur, prev) => {
     setIndex(cur);
@@ -50,13 +25,13 @@ const PlaceCarousel = () => {
           stopAutoPlayOnHover
           swipe
         >
-          {items.map(({ name, description }, i) => (
-            <Place key={i} {...{ name, description }} />
+          {recommendData.map((data, id) => (
+            <PlaceCard data={data} key={id} />
           ))}
         </CarouselBox>
       </CarouselLayer>
       <CarouselLayer>
-        {items.map((_, i) => (
+        {recommendData.map((_, i) => (
           <Button
             key={i}
             onClick={() => setIndex(i)}
@@ -87,12 +62,4 @@ const CarouselBox = styled(Carousel)`
   border: 1px solid #ccc;
 `;
 
-const PlaceLayer = styled.div`
-  width: '100%';
-  height: '100%';
-`;
-
-const ImageLayer = styled.img`
-  src: 'https://cdn.mindgil.com/news/photo/202103/70839_7148_1250.jpg';
-`;
 export default PlaceCarousel;

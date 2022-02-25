@@ -28,6 +28,7 @@ public class MatzipRepositoryImpl implements MatzipRepositoryCustom {
             .where(categoryEq(category))
             .offset(pageable.getOffset())
             .limit(pageable.getPageSize())
+            .orderBy(matzip.rating.desc())
             .fetchResults();
         return new PageImpl<>(results.getResults(), pageable, results.getTotal());
     }

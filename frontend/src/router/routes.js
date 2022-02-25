@@ -1,11 +1,7 @@
 import { lazy } from 'react';
 import paths from './paths';
 
-interface IComponentByPath {
-  [K: string]: React.LazyExoticComponent<() => JSX.Element>;
-}
-
-const componentByPath: IComponentByPath = {
+const componentByPath = {
   home: lazy(() => import('pages/Home')),
   place: lazy(() => import('pages/Place')),
   editor: lazy(() => import('pages/Editor')),
