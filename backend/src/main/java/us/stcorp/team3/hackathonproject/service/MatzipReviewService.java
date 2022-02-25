@@ -29,7 +29,9 @@ public class MatzipReviewService {
 
         QMatzip qMatzip = QMatzip.matzip;
         Double ratingAverage = queryFactory.select(matzipReview.rating.avg())
-            .from(matzipReview).fetchOne();
+            .from(matzipReview).groupBy(matzipReview.matzip.id)
+            .having(matzipReview.matzip.id.eq(matzipId))
+            .fetchOne();
         queryFactory.update(qMatzip)
             .set(qMatzip.rating, ratingAverage)
             .where(qMatzip.id.eq(matzipId))
