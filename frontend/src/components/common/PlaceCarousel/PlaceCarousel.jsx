@@ -25,8 +25,8 @@ const PlaceCarousel = () => {
           stopAutoPlayOnHover
           swipe
         >
-          {recommendData.map((data) => (
-            <PlaceCard data={data} />
+          {recommendData.map((data, id) => (
+            <PlaceCard data={data} key={id} />
           ))}
         </CarouselBox>
       </CarouselLayer>
