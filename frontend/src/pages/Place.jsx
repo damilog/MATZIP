@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useSetRecoilState } from 'recoil';
+import { useSetRecoilState, useRecoilState } from 'recoil';
 import { useLocation } from 'react-router-dom';
 import { placeDetailDataAtom, placeIdAtom, recommendDataAtom } from 'store/placeStore';
 import styled from 'styles/themedComponents';
@@ -15,13 +15,12 @@ import mlAPI from 'util/mlAPI';
 const Place = () => {
   const setData = useSetRecoilState(placeDetailDataAtom);
   const setRecommendData = useSetRecoilState(recommendDataAtom);
-  const setPlaceId = useSetRecoilState(placeIdAtom);
+  const [placeId, setPlaceId] = useRecoilState(placeIdAtom);
 
   const { pathname } = useLocation();
   const pathInfos = pathname.split('/');
-  const placeId = pathInfos.pop();
-
-  setPlaceId(placeId);
+  const id = pathInfos.pop();
+  setPlaceId(id);
 
   const fetchData = async () => {
     const data = await API.getPlaceDetail(placeId);
@@ -45,7 +44,7 @@ const Place = () => {
         <div>
           <ReviewInput />
         </div>
-        <PlaceReview />
+        <PlaceReview placeId={placeId} />
       </Main>
       <RecommendedPlace />
       <Footer />
