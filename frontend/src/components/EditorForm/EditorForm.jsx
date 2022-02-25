@@ -1,30 +1,8 @@
-import { useRecoilState } from 'recoil';
-import { newPlaceData } from 'store/editorStore';
 import styled from 'styles/themedComponents';
 import TextInput from 'components/common/TextInput';
 import SelectBox from 'components/common/SelectBox';
 import GradientButton from 'components/common/GradientButton';
 import EditorService from 'service/EditorService';
-// {
-//   "title": "string",
-//   "content": "string",
-//   "thumbnail": "string",
-//   "naverRating": 0,
-//   "naverComment": 0,
-//   "naverUrl": "string",
-//   "address": "string",
-//   "price": 0,
-//   "category": "디저트",
-//   "username": "string"
-// }
-// 다필요
-
-const categories = [
-  { id: 1, name: '한식' },
-  { id: 2, name: '양식' },
-  { id: 3, name: '중식' },
-  { id: 4, name: '일식' },
-];
 
 const Input = ({ title, width, name, onChange }) => {
   return (
@@ -35,12 +13,12 @@ const Input = ({ title, width, name, onChange }) => {
 };
 
 const EditorForm = () => {
-  const { handlePlaceInputChange, handleSubmitNewPlace } = EditorService();
+  const { handlePlaceInputChange, handleSubmitNewPlace, filter } = EditorService();
   return (
     <ul>
       <TextInputLayer>
         <SelectBox
-          selectArray={categories}
+          selectArray={filter}
           width={'200px'}
           name={'category'}
           onChange={handlePlaceInputChange}
