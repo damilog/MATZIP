@@ -1,12 +1,25 @@
-import API from 'util/API';
+import { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import { useNavigate } from 'react-router-dom';
 import { newPlaceData, isEmptyInput } from 'store/editorStore';
+import { filterAtom } from 'store/homeStore';
+import API from 'util/API';
 
 const EditorService = () => {
   const [placeData, setPlaceData] = useRecoilState(newPlaceData);
   const [isEmpty, setIsEmpty] = useRecoilState(isEmptyInput);
+  const [filter, setFilter] = useRecoilState(filterAtom);
   const navigate = useNavigate();
+
+  const fetchData = async () => {
+    const filters = await API.getCategory();
+
+    setFilter(filters);
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   const handlePlaceInputChange = (e) => {
     const { name, value } = e.target;
@@ -34,7 +47,7 @@ const EditorService = () => {
     navigate('/');
   };
 
-  return { handlePlaceInputChange, handleSubmitNewPlace };
+  return { handlePlaceInputChange, handleSubmitNewPlace, filter };
 };
 
 export default EditorService;
