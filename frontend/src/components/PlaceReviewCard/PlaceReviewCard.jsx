@@ -1,4 +1,5 @@
 import { useRecoilValue } from 'recoil';
+import { useNavigate } from 'react-router-dom';
 import { placeDetailDataAtom } from 'store/placeStore';
 import styled from 'styles/themedComponents';
 import { makeStyles } from '@material-ui/core/styles';
@@ -15,6 +16,7 @@ import { red } from '@material-ui/core/colors';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import SelectModal from 'components/common/SelectModal';
 import useToggle from 'hooks/useToggle';
+import API from 'util/API';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -30,18 +32,6 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: red[500],
   },
 }));
-
-const selection = [
-  {
-    title: '수정하기',
-    path: '/editor',
-    id: 1,
-  },
-  {
-    title: '삭제하기',
-    id: 2,
-  },
-];
 
 const PlaceReviewCard = () => {
   const data = useRecoilValue(placeDetailDataAtom);
@@ -61,9 +51,26 @@ const PlaceReviewCard = () => {
     review,
     createdBy,
   } = data;
-  const classes = useStyles();
-  const [isToggle, setToggle] = useToggle(false);
+  const navigate = useNavigate();
 
+  const [isToggle, setToggle] = useToggle(false);
+  const classes = useStyles();
+  const selection = [
+    {
+      title: '수정하기',
+      path: '/editor',
+      id: 1,
+    },
+    {
+      title: '삭제하기',
+      id: 2,
+      handler: () => {
+        API.deletePlace(id);
+        alert('맛집이 삭제 되었습니다.');
+        navigate('/');
+      },
+    },
+  ];
   return (
     data && (
       <>
