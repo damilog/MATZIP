@@ -2,11 +2,15 @@ import styled from 'styles/themedComponents';
 import { Link } from 'react-router-dom';
 
 const SelectModal = ({ width, selection }) => {
-  const Select = selection.map(({ title, id, path = null }) => {
+  const Select = selection.map(({ title, id, path = null, handler = null }) => {
     return path ? (
       <Link to={path} key={id}>
         <ListLayer key={`select-${id}`}>{title}</ListLayer>
       </Link>
+    ) : handler ? (
+      <ListLayer key={`select-${id}`} onClick={handler}>
+        {title}
+      </ListLayer>
     ) : (
       <ListLayer key={`select-${id}`}>{title}</ListLayer>
     );
