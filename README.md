@@ -16,7 +16,7 @@
 ### Back-End
 - Spring Framework & Spring Boot(2.6.3)
 - Java 17
-- JPA, Spring Data JPA
+- JPA, Spring Data JPA, Querydsl
 - JUnit5
 - H2 DB, MySQL
 
