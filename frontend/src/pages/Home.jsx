@@ -21,7 +21,7 @@ const Home = () => {
     const filters = await API.getCategory();
 
     setData(content);
-    setPageCount(totalPages);
+    setPageCount(totalPages - 1);
 
     setFilter(filters);
   };
