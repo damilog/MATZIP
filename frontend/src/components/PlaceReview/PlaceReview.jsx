@@ -1,10 +1,9 @@
-import { useEffect } from 'react';
 import { useRecoilValue } from 'recoil';
 import { placeDetailDataAtom } from 'store/placeStore';
 import styled from 'styles/themedComponents';
 import StarRating from 'components/common/StarRating';
 
-const PlaceReview = () => {
+const PlaceReview = ({ placeId }) => {
   const detailData = useRecoilValue(placeDetailDataAtom);
   const { review } = detailData;
 
