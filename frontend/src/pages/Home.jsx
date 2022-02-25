@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
-import { placeDataAtom, filterAtom, clickedPlaceIdAtom } from 'store/homeStore';
+import { placeDataAtom, filterAtom, pageCountAtom } from 'store/homeStore';
 import styled from 'styles/themedComponents';
 import Header from 'components/common/Header';
 import Filter from 'components/Filter';
@@ -12,19 +12,33 @@ import API from 'util/API';
 const Home = () => {
   const [data, setData] = useRecoilState(placeDataAtom);
   const [filter, setFilter] = useRecoilState(filterAtom);
+  const [pageCount, setPageCount] = useRecoilState(pageCountAtom);
 
   const fetchData = async () => {
     const data = await API.getPlace();
-    const { content } = data;
+    const { content, totalPages } = data;
+
     const filters = await API.getCategory();
 
     setData(content);
+    setPageCount(totalPages);
+
     setFilter(filters);
   };
 
   useEffect(() => {
     fetchData();
   }, []);
+
+  const fetchDataByPage = async (page) => {
+    const { content } = await API.getPlaceWithPage(page);
+    setData(content);
+  };
+
+  const handlePaginationClick = ({ target }) => {
+    const page = target.innerText;
+    fetchDataByPage(page);
+  };
 
   return (
     <>
@@ -36,8 +50,7 @@ const Home = () => {
         <Grid>{data && data?.map((data) => <PlaceCard key={data.id} data={data} />)}</Grid>
       </ContentLayer>
       <ContentLayer>
-        {/* //TODO:pageCount 보내주면 반영 */}
-        <Pagination count={3} />
+        <Pagination count={pageCount} onClick={handlePaginationClick} />
       </ContentLayer>
       <Footer />
     </>
