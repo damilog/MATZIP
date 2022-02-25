@@ -25,6 +25,8 @@ const ReviewInput = () => {
     };
 
     API.postReview(placeId, req);
+    //TODO: 강제 리렌더링 없도록 리팩터링 필요
+    window.location.reload();
   };
 
   return (
