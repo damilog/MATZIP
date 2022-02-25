@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -23,11 +23,18 @@ const useStyles = makeStyles({
 const PlaceCard = ({ data }) => {
   const { id, title, content, price, thumbnail, rating } = data;
   const classes = useStyles();
+  const navigator = useNavigate();
 
+  const handleCardClick = () => {
+    navigator(`/place/${id}`);
+    //TODO: 강제 리렌더링 없도록 리팩터링 필요
+    window.location.reload();
+    window.scrollTo(0, 0);
+  };
   return (
     <Card className={classes.root}>
       <Link to={`/place/${id}`}>
-        <CardActionArea>
+        <CardActionArea onClick={handleCardClick}>
           <CardMedia className={classes.media} image={thumbnail} title={title} />
           <CardContent>
             <TypographyLayer gutterBottom variant="h6" component="h2">
