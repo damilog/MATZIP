@@ -23,23 +23,20 @@ const EditorService = () => {
 
   const handlePlaceInputChange = (e) => {
     const { name, value } = e.target;
-    console.log(name, value);
-    let newPlace = {};
 
     if ((name === 'naverComment') | (name === 'naverRating') | (name === 'price')) {
-      newPlace = {
+      const newPlace = {
         ...placeData,
         [name]: Number(value),
       };
+      setPlaceData(newPlace);
     } else {
-      newPlace = {
+      const newPlace = {
         ...placeData,
         [name]: value,
       };
+      setPlaceData(newPlace);
     }
-
-    setPlaceData(newPlace);
-    console.log(placeData);
   };
 
   const checkEmptyInput = () => {
