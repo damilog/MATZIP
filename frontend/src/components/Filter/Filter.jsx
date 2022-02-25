@@ -1,14 +1,19 @@
-import { useSetRecoilState } from 'recoil';
+import { useSetRecoilState, useResetRecoilState } from 'recoil';
 import styled from 'styles/themedComponents';
 import API from 'util/API';
-import { placeDataAtom } from 'store/homeStore';
+import { placeDataAtom, pageCountAtom } from 'store/homeStore';
 
 const Filter = ({ data }) => {
   const setData = useSetRecoilState(placeDataAtom);
+  const resetPageCount = useResetRecoilState(pageCountAtom);
+  const setPageCount = useSetRecoilState(pageCountAtom);
 
   const fetchData = async (name) => {
-    const { content } = await API.getPlaceByCategory(name, 0);
+    const { content, totalPages } = await API.getPlaceByCategory(name, 0);
+
     setData(content);
+    resetPageCount();
+    setPageCount(totalPages);
   };
 
   const Filter = data.map((name, i) => {

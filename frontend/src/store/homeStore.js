@@ -10,7 +10,12 @@ export const filterAtom = atom({
   default: [],
 });
 
-export const clickedPlaceIdAtom = atom({
-  key: 'clickedPlaceIdAtom',
+export const pageCountAtom = atom({
+  key: 'pageCountAtom',
+  default: 0,
+});
+
+export const clickedPageAtom = atom({
+  key: 'clickedPageAtom',
   default: 0,
 });

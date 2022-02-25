@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
-import { placeDataAtom, filterAtom } from 'store/homeStore';
+import { placeDataAtom, filterAtom, pageCountAtom } from 'store/homeStore';
 import styled from 'styles/themedComponents';
 import Header from 'components/common/Header';
 import Filter from 'components/Filter';
@@ -12,7 +12,7 @@ import API from 'util/API';
 const Home = () => {
   const [data, setData] = useRecoilState(placeDataAtom);
   const [filter, setFilter] = useRecoilState(filterAtom);
-  const [pageCount, setPageCount] = useState(0);
+  const [pageCount, setPageCount] = useRecoilState(pageCountAtom);
 
   const fetchData = async () => {
     const data = await API.getPlace();
